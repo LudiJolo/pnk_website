@@ -4,7 +4,7 @@ import {Outlet} from "react-router-dom";
 function Navi() {
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="secondary" expand="lg" class="text-primary">
         <Container>
           <Navbar.Brand href="/">PNK</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

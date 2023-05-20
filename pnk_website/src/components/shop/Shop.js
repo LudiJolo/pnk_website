@@ -2,11 +2,9 @@ import React from "react";
 
 function Shop() {
   return (
-    <div>
-        <h1>Shop page</h1>
-        <h1>Shop page</h1>
-        <h1>Shop page</h1>
-        <h1>Shop page</h1>
+    <div align="center">
+        <h1>Shopping page</h1>
+        <p class="text-primary">Two for one fiddy dorra!</p>
     </div>
   );
 }

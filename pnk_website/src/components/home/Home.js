@@ -2,11 +2,9 @@ import React from "react";
 
 function Home() {
   return (
-    <div>
-        <h1>home page</h1>
-        <h1>home page</h1>
-        <h1>home page</h1>
-        <h1>home page</h1>
+    <div align="center">
+        <h1>This is homepage</h1>
+        <p class="text-primary">No, this is Patrick</p>
     </div>
   );
 }

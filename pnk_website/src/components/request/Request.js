@@ -2,11 +2,9 @@ import React from "react";
 
 function Request() {
   return (
-    <div>
+    <div align="center">
         <h1>Request page</h1>
-        <h1>Request page</h1>
-        <h1>Request page</h1>
-        <h1>Request page</h1>
+        <p class="text-primary">Gimme keyboard</p>
     </div>
   );
 }
