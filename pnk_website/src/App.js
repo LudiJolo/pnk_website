@@ -8,21 +8,25 @@ import Navi from "./components/navbar/Navi";
 import Contact from "./components/contact/Contact";
 import About from "./components/aboutme/About";
 import Request from "./components/request/Request";
-import Shop from "./components/shop/Shop";
+import Footer from "./components/footer/Footer";
+import Collection from "./components/collection/Collection";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navi />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="request" element={<Request />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="contact" element={<Contact />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navi />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="request" element={<Request />} />
+            <Route path="collection" element={<Collection />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      <Footer/>
+    </>
   );
 }
 

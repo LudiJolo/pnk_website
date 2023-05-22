@@ -12,7 +12,7 @@ function Navi() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/about">About PNK</Nav.Link>
-              <Nav.Link href="/shop">Shop</Nav.Link>
+              <Nav.Link href="/collection">Collection</Nav.Link>
               <Nav.Link href="/request">Request a Mod</Nav.Link>
               <Nav.Link href="/contact">Contact</Nav.Link>
             </Nav>
