@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import {Outlet} from "react-router-dom";
+import "./navi.css";
 function Navi() {
   return (
     <>

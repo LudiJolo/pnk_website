@@ -1,0 +1,37 @@
+.collectionheader{
+    background: url("./img/headerimg3.png") center;
+    background-size: cover;
+    height:65vh;
+    filter: brightness(0.5);
+}
+
+#c_header{
+    color: rgb(255, 255, 255);
+    font-size: 5em;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 30%;
+    letter-spacing: 3px;
+}
+#c{
+    color: rgb(245, 44, 201);
+}
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+
+@media screen and (max-width: 767px) {
+    .card-img-top {
+        width: 100%;
+        height: 40vw;
+        object-fit: cover;
+    }
+
+    #c_header{
+        font-size: 3em;
+    }
+}

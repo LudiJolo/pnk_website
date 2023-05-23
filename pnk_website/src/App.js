@@ -13,7 +13,7 @@ import Collection from "./components/collection/Collection";
 
 function App() {
   return (
-    <>
+    <div class="maincontainer">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navi />}>
@@ -26,7 +26,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer/>
-    </>
+    </div>
   );
 }
 

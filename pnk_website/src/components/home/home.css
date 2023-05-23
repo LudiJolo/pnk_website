@@ -1,0 +1,35 @@
+#headertext{
+    position: absolute;
+    top: 38%;
+    width: 100%;
+    z-index:100;
+    filter: brightness(1.5);
+    letter-spacing: 3px;
+}
+
+#header1{
+    color: white;
+    font-size: 7em;
+}
+#header2{
+    color: white;
+    font-size: 2em;
+    margin-top: 1em;
+}
+
+#p{
+    color: rgb(15, 243, 53);
+}
+#n{
+    color:rgb(6, 148, 196);
+}
+#k{
+    color:rgb(243, 66, 125);
+}
+
+.headercarousel img{
+    height:100vh;
+    object-fit: cover;
+    filter: brightness(0.4);
+    z-index: -1;
+}
