@@ -7,7 +7,7 @@ function Navi() {
     <>
       <Navbar bg="secondary" expand="lg" class="text-primary">
         <Container>
-          <Navbar.Brand href="/">PNK</Navbar.Brand>
+          <Navbar.Brand href="/" id="navlogo">PNK</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

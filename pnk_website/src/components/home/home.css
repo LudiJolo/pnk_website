@@ -4,7 +4,6 @@
     width: 100%;
     z-index:100;
     filter: brightness(1.5);
-    letter-spacing: 3px;
 }
 
 #header1{
@@ -19,12 +18,15 @@
 
 #p{
     color: rgb(15, 243, 53);
+    font-family:beyno;
 }
 #n{
     color:rgb(6, 148, 196);
+    font-family:beyno;
 }
 #k{
     color:rgb(243, 66, 125);
+    font-family:beyno;
 }
 
 .headercarousel img{
@@ -32,4 +34,11 @@
     object-fit: cover;
     filter: brightness(0.4);
     z-index: -1;
+}
+
+@font-face {
+    src: url('./BEYNO.otf'), url('./BEYNO.ttf');
+    font-family: beyno;
+    font-weight: normal;
+    font-style: normal;
 }

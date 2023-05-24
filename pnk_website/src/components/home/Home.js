@@ -16,7 +16,7 @@ function Home() {
             ice <span id="k">K</span>
             eys
           </h1>
-          <h3 id="header2">by Alby</h3>
+          <h3 id="header2">by PNK Co.</h3>
         </div>
         <Carousel
           className="headercarousel"
