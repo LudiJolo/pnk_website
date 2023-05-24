@@ -1,10 +1,13 @@
 import React from "react";
-
+import "./about.css";
 function About() {
   return (
-    <div align="center">
-        <h1>About page</h1>
-        <p class="text-primary">Ain't nobody got time about me</p>
+    <div>
+      <div class="aboutheader d-flex "></div>
+      <h1 class="textheader">
+        <span id="a">A</span>bout{" "}
+        <span id="u">U</span>s
+      </h1>
     </div>
   );
 }

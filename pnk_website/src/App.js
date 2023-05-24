@@ -10,6 +10,7 @@ import About from "./components/aboutme/About";
 import Request from "./components/request/Request";
 import Footer from "./components/footer/Footer";
 import Collection from "./components/collection/Collection";
+import Keyboard from "./components/collection/Keyboard";
 
 function App() {
   return (
@@ -20,12 +21,15 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="request" element={<Request />} />
-            <Route path="collection" element={<Collection />} />
+            <Route path="collection">
+              <Route index={true} element={<Collection />} />
+              <Route path="keyboard" element={<Keyboard />} />
+            </Route>
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
       </BrowserRouter>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

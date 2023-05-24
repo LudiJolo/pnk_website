@@ -13,7 +13,7 @@ function Home() {
           <h1 id="header1" >
             <span id="p">P</span>
             retty <span id="n">N</span>
-            ice <span id="k">K</span>
+            eat <span id="k">K</span>
             eys
           </h1>
           <h3 id="header2">by PNK Co.</h3>

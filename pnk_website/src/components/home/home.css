@@ -4,6 +4,7 @@
     width: 100%;
     z-index:100;
     filter: brightness(1.5);
+    padding: 1em;
 }
 
 #header1{
@@ -41,4 +42,15 @@
     font-family: beyno;
     font-weight: normal;
     font-style: normal;
+}
+
+@media screen and (max-width: 767px) {
+    #headertext{
+        position: absolute;
+        top: 30%;
+        width: 100%;
+    }
+    #header1{
+        font-size: 5em;
+    }
 }
