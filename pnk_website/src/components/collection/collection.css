@@ -28,12 +28,26 @@
 }
 
 
-
-
 /*******************************************
 *********** Keyboard detail styles *********
 ********************************************/
-
 .detailcontainer{
-    padding-top: 10em;
+    
+    
+}
+
+.detailinfo{
+    padding-top: 4em;
+    border-bottom: 2px solid rgb(196, 191, 191);
+}
+
+
+#detailheader{
+    text-align: center;
+    margin: auto;
+}
+
+
+.aboutimg{
+    width: 100%;
 }
