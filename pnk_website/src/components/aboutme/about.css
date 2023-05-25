@@ -1,0 +1,15 @@
+.aboutheader{
+    background: url("./img/headerimg2.png") center;
+    background-size: cover;
+    height:65vh;
+    filter: brightness(0.5);
+}
+#a{
+    color: rgb(15, 243, 53);
+    font-family:beyno;
+}
+#u{
+    color: rgb(15, 243, 53);
+    font-family:beyno;
+}
+

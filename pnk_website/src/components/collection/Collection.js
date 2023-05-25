@@ -3,13 +3,15 @@ import "./collection.css";
 import sample1 from "./img/headerimg.png";
 import sample2 from "./img/headerimg2.png";
 import sample3 from "./img/headerimg3.png";
+import { Link, Outlet} from "react-router-dom";
+
 
 function Collection() {
   return (
     <div>
       <div class="collectionheader d-flex "></div>
-      <h1 id="c_header">
-        <span id="c">C</span>ollections
+      <h1 class="textheader">
+        <span id="c">C</span>ollection
       </h1>
       <div class="row ">
         <div class="col-md-4 mx-auto p-3">
@@ -21,9 +23,9 @@ function Collection() {
                 This keyboard was modded with the inspiration from (some
                 reference).
               </div>
-              <a href="#" class="btn btn-primary">
-                More detail
-              </a>
+              <Link to="/collection/keyboard" class="btn btn-primary">
+                View
+              </Link>
             </div>
           </div>
         </div>
@@ -36,9 +38,9 @@ function Collection() {
                 This keyboard was modded with the inspiration from (some
                 reference).
               </div>
-              <a href="#" class="btn btn-primary">
-                More detail
-              </a>
+              <Link to="/collection/keyboard" class="btn btn-primary">
+                View
+              </Link>
             </div>
           </div>
         </div>
@@ -51,9 +53,9 @@ function Collection() {
                 This keyboard was modded with the inspiration from (some
                 reference).
               </div>
-              <a href="#" class="btn btn-primary">
-                More detail
-              </a>
+              <Link to="/collection/keyboard" class="btn btn-primary">
+                View
+              </Link>
             </div>
           </div>
         </div>
@@ -66,9 +68,9 @@ function Collection() {
                 This keyboard was modded with the inspiration from (some
                 reference).
               </div>
-              <a href="#" class="btn btn-primary">
-                More detail
-              </a>
+              <Link to="/collection/keyboard" class="btn btn-primary">
+                View
+              </Link>
             </div>
           </div>
         </div>

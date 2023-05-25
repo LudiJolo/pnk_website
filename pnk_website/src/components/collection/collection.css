@@ -5,15 +5,7 @@
     filter: brightness(0.5);
 }
 
-#c_header{
-    color: rgb(255, 255, 255);
-    font-size: 5em;
-    width: 100%;
-    position: absolute;
-    text-align: center;
-    top: 30%;
-    letter-spacing: 3px;
-}
+
 #c{
     color: rgb(245, 44, 201);
     font-family:beyno;
@@ -32,7 +24,30 @@
         object-fit: cover;
     }
 
-    #c_header{
-        font-size: 3em;
-    }
+    
+}
+
+
+/*******************************************
+*********** Keyboard detail styles *********
+********************************************/
+.detailcontainer{
+    
+    
+}
+
+.detailinfo{
+    padding-top: 4em;
+    border-bottom: 2px solid rgb(196, 191, 191);
+}
+
+
+#detailheader{
+    text-align: center;
+    margin: auto;
+}
+
+
+.aboutimg{
+    width: 100%;
 }

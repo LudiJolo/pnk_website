@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
 .App {
   text-align: center;
   position: relative;
@@ -7,6 +9,30 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+/*Webpage global css*/
+
+.maincontainer{
+  font-family: 'Poppins', sans-serif;
+
+}
+.textheader {
+  color: rgb(255, 255, 255);
+  font-size: 5em;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 30%;
+  letter-spacing: 3px;
+}
+
+@media screen and (max-width: 767px) {
+  .textheader {
+    font-size: 3em;
+  }
+}
+
+/*END OF Webpage global css*/
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
