@@ -1,8 +1,6 @@
 import React from "react";
+import {Tabs, Tab} from "react-bootstrap"
 import sampleimg from "./img/sample.png";
-import showcase1 from "./img/showcase1.png";
-import showcase2 from "./img/showcase2.png";
-import showcase3 from "./img/showcase3.png";
 
 function Keyboard() {
   return (
@@ -37,47 +35,29 @@ function Keyboard() {
               </tr>
             </tbody>
           </table>
-          <div>
+          <div class="py-3">
             <span>Do you want this specific mod? </span>
             <button type="button" class="btn btn-primary">
-              Add to cart
+              Order preset
             </button>
           </div>
         </div>
       </div>
-      <div >
-        <h1 id="detailheader" class="mb-5">About this keyboard</h1>
-        <div class="row py-3">
-          <div class="col-md-6">
-            <img class="aboutimg " src={showcase1} />
-          </div>
-          <p class="col-md-6 d-flex align-items-center">
-            &#x2022; Describe about the inspiration behind this keyboard.
-            Mention its color scheme and what reference is this keyboard is
-            based on.
-          </p>
-        </div>
-        <div class="row py-3">
-          <div class="col-md-6 order-md-2">
-            <img class="aboutimg " src={showcase2} />
-          </div>
-          <p class="col-md-6 order-md-1 d-flex align-items-center">
-            &#x2022; Mention the type of key switch that was used and describe
-            how it feels. Also describe the type of keycaps and its typing
-            experience.
-          </p>
-        </div>
-        <div class="row py-3">
-          <div class="col-md-6">
-            <img class="aboutimg " src={showcase3} />
-          </div>
-          <p class="col-md-6 d-flex align-items-center">
-            &#x2022; Mention additional features that this keyboard has. For
-            example, this keyboard has added foaming underneath, enchancing the
-            sound experience and provides more comfort in each key press.
-          </p>
-        </div>
-      </div>
+      <Tabs
+      defaultActiveKey="profile"
+      id="uncontrolled-tab-example"
+      className="mb-3"
+    >
+      <Tab eventKey="overview" title="Overview">
+        Overview
+      </Tab>
+      <Tab eventKey="features" title="Features">
+        Features
+      </Tab>
+      <Tab eventKey="sound" title="Sound Test">
+        Video
+      </Tab>
+    </Tabs>
     </div>
   );
 }

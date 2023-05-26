@@ -1,15 +1,26 @@
-.aboutheader{
-    background: url("./img/headerimg2.png") center;
-    background-size: cover;
-    height:65vh;
-    filter: brightness(0.5);
+.aboutheader {
+  background: url("./img/headerimg2.png") center;
+  background-size: cover;
+  height: 65vh;
+  filter: brightness(0.5);
 }
-#a{
-    color: rgb(15, 243, 53);
-    font-family:beyno;
-}
-#u{
-    color: rgb(15, 243, 53);
-    font-family:beyno;
+.aboutletter {
+  color: rgb(15, 243, 53);
+  font-family: beyno;
 }
 
+#detailheader {
+  text-align: center;
+  margin: auto;
+  font-size: larger;
+}
+
+.aboutimg {
+  width: 100%;
+}
+@media screen and (min-width: 767px) {
+  .abouttext {
+    font-size: x-large;
+    padding: 5em;
+  }
+}
