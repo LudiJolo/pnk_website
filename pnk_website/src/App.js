@@ -7,7 +7,7 @@ import Home from "./components/home/Home";
 import Navi from "./components/navbar/Navi";
 import Contact from "./components/contact/Contact";
 import About from "./components/aboutme/About";
-import Request from "./components/request/Request";
+import Pricing from "./components/pricing/Pricing";
 import Footer from "./components/footer/Footer";
 import Collection from "./components/collection/Collection";
 import Keyboard from "./components/collection/Keyboard";
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<Navi />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="request" element={<Request />} />
+            <Route path="pricing" element={<Pricing />} />
             <Route path="collection">
               <Route index={true} element={<Collection />} />
               <Route path="keyboard" element={<Keyboard />} />
