@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs, Tab } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 import ImageGallery from "react-image-gallery";
+import ReactPlayer from "react-player";
 import "react-image-gallery/styles/css/image-gallery.css";
 import sampleimg from "./img/sample.png";
 import showcase1 from "./img/showcase1.png";
@@ -25,10 +26,20 @@ const images = [
 
 function Keyboard() {
   return (
-    <div class="detailcontainer p-md-5">
-      <h1 align="center" class="p-5">
-        Alloy FPS Origins
-      </h1>
+    <div class="detailcontainer p-md-3">
+      <div class="jumbotron">
+        <div>
+          <h1>Alloy FPS Origins</h1>
+          <p>
+            Do you want this custom keyboard?{" "}
+            <a class="btn btn-primary scrollto">Buy preset</a>
+          </p>
+          <a class="btn btn-primary scrollto" href="#soundtest">
+            Sound test
+          </a>
+        </div>
+      </div>
+
       <div class="detailinfo pt-4 mb-5">
         <ImageGallery items={images} autoPlay={true} />
       </div>
@@ -69,6 +80,18 @@ function Keyboard() {
             </div>
           </div>
         </div>
+      </div>
+      <div
+        id="soundtest"
+        align="center"
+        class="mt-5 py-5 text-bg-dark shadow-lg"
+      >
+        <h1>Sound Test</h1>
+        <ReactPlayer
+          id="player"
+          url={"https://www.youtube.com/watch?v=v2yJa9g5Ib8"}
+          controls={true}
+        />
       </div>
     </div>
   );
