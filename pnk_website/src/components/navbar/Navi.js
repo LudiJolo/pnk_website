@@ -5,7 +5,7 @@ import "./navi.css";
 function Navi() {
   return (
     <>
-      <Navbar bg="secondary" expand="lg" class="text-primary">
+      <Navbar expand="lg" >
         <Container>
           <Navbar.Brand href="/" id="navlogo">PNK</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

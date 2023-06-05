@@ -8,7 +8,7 @@ import { Link, Outlet} from "react-router-dom";
 
 function Collection() {
   return (
-    <div>
+    <div class="collection">
       <div class="collectionheader d-flex "></div>
       <h1 class="textheader">
         <span id="c">C</span>ollection

@@ -10,7 +10,7 @@ function Home() {
     <div>
       <div class="headercontainer position-relative">
         <div id="headertext" class="text-center">
-          <h1 id="header1" >
+          <h1 id="header1">
             <span id="p">P</span>
             retty <span id="n">N</span>
             eat <span id="k">K</span>
@@ -34,7 +34,15 @@ function Home() {
           </Carousel.Item>
         </Carousel>
       </div>
-      <div class="border border-danger">Brief description</div>
+      <div class="jumbotron" align="center">
+        <div>
+          <h1>Keyboard Modding Service</h1>
+          <p>
+            Specializes in customizing mechanical keyboards based on style,
+            comfort, and functionality
+          </p>
+        </div>
+      </div>
       <div class="row border border-warning mx-auto">
         <div class="col-md-6">mod1</div>
         <div class="col-md-6">mod2</div>
