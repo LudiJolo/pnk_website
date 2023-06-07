@@ -1,0 +1,31 @@
+.pricing{
+    
+
+}
+.keysize{
+    background-image: linear-gradient(#a2f7cc, #b6baff);
+}
+.freemium {
+  border-image: linear-gradient(#7df8b4, #28c76f) 30;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 1em;
+}
+.freemiumtitle{
+    background: linear-gradient(#0f9721, #28c76f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.premium {
+  border-image: linear-gradient(#abdcff, #0396ff) 30;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 1em;
+}
+
+.premiumtitle{
+    background: linear-gradient(#4da1dd, #0396ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -6,7 +6,7 @@ import showcase3 from "./img/showcase3.png";
 
 function About() {
   return (
-    <div>
+    <div class="about">
       <div>
         <div class="aboutheader d-flex "></div>
         <h1 class="textheader">

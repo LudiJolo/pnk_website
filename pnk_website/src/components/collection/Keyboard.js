@@ -44,8 +44,8 @@ function Keyboard() {
         <ImageGallery items={images} autoPlay={true} />
       </div>
       <div class="row  text-center">
-        <div class="col-md-4 mx-auto py-3">
-          <div class="card shadow-lg py-2">
+        <div class=" col-md-4 mx-auto py-3">
+          <div class="info1 card shadow-lg py-2">
             <div class="card-body">
               <Icons.Tools className="icon" />
               <ul class="list-group list-group-flush">
@@ -56,8 +56,8 @@ function Keyboard() {
             </div>
           </div>
         </div>
-        <div class="col-md-4 mx-auto py-3">
-          <div class="card shadow-lg py-2">
+        <div class=" col-md-4 mx-auto py-3">
+          <div class="info2 card shadow-lg py-2">
             <div class="card-body">
               <Icons.KeyboardFill className="icon" />
               <ul class="list-group list-group-flush">
@@ -68,8 +68,8 @@ function Keyboard() {
             </div>
           </div>
         </div>
-        <div class="col-md-4 mx-auto py-3">
-          <div class="card shadow-lg py-2">
+        <div class=" col-md-4 mx-auto py-3">
+          <div class="info3 card shadow-lg py-2">
             <div class="card-body">
               <Icons.PaletteFill className="icon" />
               <ul class="list-group list-group-flush">

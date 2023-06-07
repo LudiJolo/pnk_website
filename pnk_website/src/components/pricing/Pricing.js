@@ -1,29 +1,37 @@
 import React from "react";
-
+import "./pricing.css";
 function Pricing() {
   return (
-    <div class="container-fluid pt-5 ">
-      <div class="row py-3 ">
-        <div class="row col-12 mx-0 " align="center">
-          <h1 class="p-1 py-md-4">Modding services based on keyboard size</h1>
-          <div class="col-4 border border-dark">
-            <h3>&le; 65%</h3>
-            <h5>$30</h5>
-          </div>
-          <div class="col-4 border border-dark">
-            <h3>75% to 80%(TKL)</h3>
-            <h5>$40</h5>
-          </div>
-          <div class="col-4 border border-dark">
-            <h3>90% to Full size</h3>
-            <h5>$50</h5>
+    <div class="pricing container-fluid pt-5 ">
+      <div class="row py-3 d-flex">
+        <div class="col-12 mx-0 " align="center">
+          <h1 class="p-1 pt-md-4">Modding services based on keyboard size</h1>
+          <div class="row keysize m-1 my-md-4">
+            <div class="col-4 border border-dark py-5">
+              <h2>
+                <b>$30</b>
+              </h2>
+              <p>for keyboards &le; 65%</p>
+            </div>
+            <div class="col-4 border border-dark py-5">
+              <h2>
+                <b>$40</b>
+              </h2>
+              <p>for keyboards 75% to 80%(TKL)</p>
+            </div>
+            <div class="col-4 border border-dark py-5">
+              <h2>
+                <b>$50</b>
+              </h2>
+              <p>for keyboards 90% to Full size</p>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card">
+        <div class="col-md-6 mt-4">
+          <div class="card freemium shadow ">
             <div class="card-header">On the budget</div>
             <div class="card-body">
-              <h5 class="card-title">"Free"mium</h5>
+              <h3 class="card-title freemiumtitle"><b>"FREE"MIUM</b></h3>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   If you already own a mechanical keyboard that needs
@@ -39,11 +47,11 @@ function Pricing() {
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card">
+        <div class="col-md-6 mt-4 ">
+          <div class="card premium shadow">
             <div class="card-header">Express modding service</div>
             <div class="card-body">
-              <h5 class="card-title">Premium</h5>
+              <h3 class="card-title premiumtitle"><b>PREMIUM</b></h3>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   You pay me for the total cost of how many items are in the

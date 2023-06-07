@@ -26,6 +26,13 @@
   letter-spacing: 3px;
 }
 
+.jumbotron {
+  padding: 6rem 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+
+
 @media screen and (max-width: 767px) {
   .textheader {
     font-size: 3em;

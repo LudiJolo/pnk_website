@@ -1,80 +1,77 @@
-.collectionheader{
-    background: url("./img/headerimg3.png") center;
-    background-size: cover;
-    height:65vh;
-    filter: brightness(0.5);
+.collectionheader {
+  background: url("./img/headerimg3.png") center;
+  background-size: cover;
+  height: 65vh;
+  filter: brightness(0.5);
 }
 
-
-#c{
-    color: rgb(245, 44, 201);
-    font-family:beyno;
+#c {
+  color: rgb(245, 44, 201);
+  font-family: beyno;
 }
 .card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
 }
-
 
 @media screen and (max-width: 767px) {
-    .card-img-top {
-        width: 100%;
-        height: 40vw;
-        object-fit: cover;
-    }
-
-    
+  .card-img-top {
+    width: 100%;
+    height: 40vw;
+    object-fit: cover;
+  }
 }
-
 
 /*******************************************
 *********** Keyboard detail styles *********
 ********************************************/
-.detailcontainer{
-    padding-top: 5em !important;
-    margin: auto;
+.detailcontainer {
+  padding-top: 5em !important;
+  margin: auto;
 }
 
-.detailinfo{
-    
+.detailinfo {
 }
 
 .icon {
-    margin: 0 auto;
-    width: 50px;
-    height: 50px;
-    transition: all 0.3s ease-out 0s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    transform-style: preserve-3d;
-  }
-  
-  .jumbotron {
-    padding: 6rem 2rem;
-    margin-bottom: 2rem;
-    background-color: #e9ecef;
-    border-radius: .3rem;
-  }
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease-out 0s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transform-style: preserve-3d;
+}
+.info1{
+    background-image: linear-gradient(#E3FDF5, #FFE6FA);
+}
+.info2{
+    background-image: linear-gradient(#ffdbff, #D7FFFE);
+}
+.info3{
+    background-image: linear-gradient(#E8DBFC, #F8F9D2);
+}
+.list-group-item{
+    background:transparent;
+}
 
 
 
 
-  
+
 /*******************************************
 *********** Responsive Styles *********
 ********************************************/
-  @media screen and (max-width: 767px) {
-    .card-img-top {
-        width: 100%;
-        height: 40vw;
-        object-fit: cover;
-    }
-    #player{
-        width: 100% !important;
-      }
-
-    
+@media screen and (max-width: 767px) {
+  .card-img-top {
+    width: 100%;
+    height: 40vw;
+    object-fit: cover;
+  }
+  #player {
+    width: 100% !important;
+  }
 }
