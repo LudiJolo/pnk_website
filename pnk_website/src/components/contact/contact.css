@@ -1,0 +1,24 @@
+.contactcontainer {
+  background-image: linear-gradient(45deg, #4998da, #1cb4a0);
+  height: 100vh;
+}
+
+.contactform {
+  position: absolute;
+  border: 5px solid rgb(0, 217, 255);
+  padding: 3em;
+  width: 50%;
+  background-image: linear-gradient(135deg, #50aaf3, #20c9b2);
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin: 0px auto;
+  left: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .contactform {
+    width: 95%;
+  }
+}
