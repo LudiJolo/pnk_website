@@ -23,7 +23,7 @@ function App() {
             <Route path="pricing" element={<Pricing />} />
             <Route path="collection">
               <Route index={true} element={<Collection />} />
-              <Route path="keyboard" element={<Keyboard />} />
+              <Route path=":keyboard_id" element={<Keyboard />} />
             </Route>
             <Route path="contact" element={<Contact />} />
           </Route>

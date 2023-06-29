@@ -15,14 +15,22 @@ import {
 } from "firebase/firestore";
 
 function Collection() {
+  const [keyboards, setKeys] = useState(null);
   useEffect(() => {
     (async () => {
       try {
         const keyboards = collectionGroup(db, "keyboards");
         const querySnapshot = await getDocs(keyboards);
+        const keyGroup = [];
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
+          const keyboardItem = {};
+          keyboardItem['id'] = doc.id;
+          keyboardItem['data'] = doc.data();
+          keyGroup.push(keyboardItem);
         });
+
+        setKeys(keyGroup);
+        console.log(keyGroup);
       } catch (err) {
         console.log("Error occured when fetching keyboards");
       }
@@ -36,66 +44,23 @@ function Collection() {
         <span id="c">C</span>ollection
       </h1>
       <div class="row ">
-        <div class="col-md-4 mx-auto p-3">
-          <div class="card">
-            <img class="card-img-top " src={sample1} />
-            <div class="card-body">
-              <h5 class="card-title">Keyboard Title</h5>
-              <div class="card-text mb-3">
-                This keyboard was modded with the inspiration from (some
-                reference).
+        {keyboards &&
+          keyboards.map((item) => (
+            <div class="col-md-4 mx-auto p-3">
+              <div class="card">
+                <img class="card-img-top " src={sample1} />
+                <div class="card-body">
+                  <h5 class="card-title">{item.data.name}</h5>
+                  <div class="card-text mb-3">
+                    {item.data.desc}
+                  </div>
+                  <Link to={"/collection/"+item.id} class="btn btn-primary">
+                    View
+                  </Link>
+                </div>
               </div>
-              <Link to="/collection/keyboard" class="btn btn-primary">
-                View
-              </Link>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4 mx-auto p-3">
-          <div class="card">
-            <img class="card-img-top" src={sample2} />
-            <div class="card-body">
-              <h5 class="card-title">Keyboard Title</h5>
-              <div class="card-text mb-3">
-                This keyboard was modded with the inspiration from (some
-                reference).
-              </div>
-              <Link to="/collection/keyboard" class="btn btn-primary">
-                View
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mx-auto p-3">
-          <div class="card">
-            <img class="card-img-top" src={sample3} />
-            <div class="card-body">
-              <h5 class="card-title">Keyboard Title</h5>
-              <div class="card-text mb-3">
-                This keyboard was modded with the inspiration from (some
-                reference).
-              </div>
-              <Link to="/collection/keyboard" class="btn btn-primary">
-                View
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mx-auto p-3">
-          <div class="card">
-            <img class="card-img-top" src={sample1} />
-            <div class="card-body">
-              <h5 class="card-title">Keyboard Title</h5>
-              <div class="card-text mb-3">
-                This keyboard was modded with the inspiration from (some
-                reference).
-              </div>
-              <Link to="/collection/keyboard" class="btn btn-primary">
-                View
-              </Link>
-            </div>
-          </div>
-        </div>
+          ))}
       </div>
     </div>
   );
