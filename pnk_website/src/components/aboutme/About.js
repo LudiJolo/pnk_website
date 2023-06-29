@@ -3,6 +3,7 @@ import "./about.css";
 import showcase1 from "./img/showcase1.png";
 import showcase2 from "./img/showcase2.png";
 import showcase3 from "./img/showcase3.png";
+import { Link } from "react-router-dom";
 
 function About() {
   return (
@@ -47,9 +48,9 @@ function About() {
         <div class="abouttext col-md-6 d-flex align-items-center">
           <p>
             I offer two{" "}
-            <a class="d-inline" href="">
+            <Link class="d-inline" to="/pricing/">
               pricing options
-            </a>{" "}
+            </Link>{" "}
             for the modding services while delivering exceptional craftsmanship
             and customer satisfaction. For an accurate quote for your specific
             modding project, please reach out to me to discuss your
