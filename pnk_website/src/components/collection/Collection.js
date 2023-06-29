@@ -1,12 +1,34 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import "./collection.css";
 import sample1 from "./img/headerimg.png";
 import sample2 from "./img/headerimg2.png";
 import sample3 from "./img/headerimg3.png";
-import { Link, Outlet} from "react-router-dom";
-
+import { Link, Outlet } from "react-router-dom";
+import { firebase, db } from "../firebase/firebase-config.js";
+import {
+  collection,
+  collectionGroup,
+  doc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
 
 function Collection() {
+  useEffect(() => {
+    (async () => {
+      try {
+        const keyboards = collectionGroup(db, "keyboards");
+        const querySnapshot = await getDocs(keyboards);
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, " => ", doc.data());
+        });
+      } catch (err) {
+        console.log("Error occured when fetching keyboards");
+      }
+    })();
+  }, []);
+
   return (
     <div class="collection">
       <div class="collectionheader d-flex "></div>
