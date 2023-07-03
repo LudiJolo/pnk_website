@@ -11,6 +11,8 @@ import Pricing from "./components/pricing/Pricing";
 import Footer from "./components/footer/Footer";
 import Collection from "./components/collection/Collection";
 import Keyboard from "./components/collection/Keyboard";
+import Login from "./components/login/login";
+import Authenticate from "./components/login/Authenticate";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
               <Route path=":keyboard_id" element={<Keyboard />} />
             </Route>
             <Route path="contact" element={<Contact />} />
+            <Route path="pnk_login" element={<Login />} />
+            <Route path="pnk_auth" element={<Authenticate />} />
           </Route>
         </Routes>
       </BrowserRouter>
