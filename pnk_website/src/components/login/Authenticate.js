@@ -2,6 +2,8 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import React from "react";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/firebase-config";
+import { Link } from "react-router-dom";
+import Admin from "../admin/admin";
 
 const Authenticate = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -32,12 +34,7 @@ const Authenticate = () => {
     <div>
       {authUser ? (
         <>
-          <h1>this is the admin page</h1>
-          <h1>this is the admin page</h1>
-          <h1>this is the admin page</h1>
-          <h1>this is the admin page</h1>
-          <h1>this is the admin page</h1>
-          <button class="btn btn-primary" onClick={sign_Out}>Log Out</button>
+          <Admin signout={sign_Out}/>
         </>
       ) : (
         <>
@@ -46,6 +43,9 @@ const Authenticate = () => {
           <h1>login first</h1>
           <h1>login first</h1>
           <h1>login first</h1>
+          <Link to={"/pnk_login"} class="btn btn-primary">
+            Log In
+          </Link>
         </>
       )}
     </div>

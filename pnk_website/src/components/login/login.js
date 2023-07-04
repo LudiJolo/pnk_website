@@ -2,16 +2,18 @@ import React from "react";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase-config";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
+  let navigate = useNavigate();
 
   const signIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCreds) => {
-        console.log(userCreds);
+        navigate("/pnk_auth");
       })
       .catch((error) => {
         console.log(error);

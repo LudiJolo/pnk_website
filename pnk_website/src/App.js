@@ -28,9 +28,9 @@ function App() {
               <Route path=":keyboard_id" element={<Keyboard />} />
             </Route>
             <Route path="contact" element={<Contact />} />
-            <Route path="pnk_login" element={<Login />} />
-            <Route path="pnk_auth" element={<Authenticate />} />
           </Route>
+          <Route path="/pnk_login" element={<Login />} />
+          <Route path="/pnk_auth" element={<Authenticate />} />
         </Routes>
       </BrowserRouter>
       <Footer />
