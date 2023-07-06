@@ -22,9 +22,11 @@ import { firebase, db } from "../firebase/firebase-config.js";
 import sample1 from "../collection/img/headerimg.png";
 import sample2 from "../collection/img/headerimg2.png";
 import sample3 from "../collection/img/headerimg3.png";
+import AddKeyboard from "./addKeyboard.js";
 
 const Admin = (props) => {
   const [keys, setKeys] = useState(null);
+  const [addModal, setAddModal] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -47,6 +49,12 @@ const Admin = (props) => {
     })();
   }, []);
 
+  const toggleAdd = (e) => {
+    e.preventDefault();
+    setAddModal(!addModal);
+    console.log("Add modal:", addModal);
+  };
+
   return (
     <div class="bg-dark text-light">
       <Navbar expand="lg">
@@ -63,7 +71,7 @@ const Admin = (props) => {
       </Navbar>
       <div class="pt-5">
         <Container className="pt-5">
-          <Button className="my-4">
+          <Button className="my-4" onClick={() => setAddModal(true)}>
             <Icons.PlusCircleFill className="icon m-auto" />
           </Button>
           <Row>
@@ -84,11 +92,7 @@ const Admin = (props) => {
           </Row>
         </Container>
       </div>
-      <div>
-        <Form>
-          
-        </Form>
-      </div>
+      <AddKeyboard show={addModal} onHide={() => setAddModal(false)} />
     </div>
   );
 };
