@@ -24,36 +24,35 @@ import sample2 from "../collection/img/headerimg2.png";
 import sample3 from "../collection/img/headerimg3.png";
 import AddKeyboard from "./addKeyboard.js";
 
+
+
+//next step: update list after adding keybaord data
 const Admin = (props) => {
   const [keys, setKeys] = useState(null);
   const [addModal, setAddModal] = useState(false);
+  const fetchData = async () => {
+    try {
+      const keyboards = collectionGroup(db, "keyboards");
+      const querySnapshot = await getDocs(keyboards);
+      const keyGroup = [];
+      querySnapshot.forEach((doc) => {
+        const keyboardItem = {};
+        keyboardItem["id"] = doc.id;
+        keyboardItem["data"] = doc.data();
+        keyGroup.push(keyboardItem);
+      });
+
+      setKeys(keyGroup);
+      console.log(keyGroup);
+    } catch (err) {
+      console.log("Error occured when fetching keyboards");
+    }
+  };
+
 
   useEffect(() => {
-    (async () => {
-      try {
-        const keyboards = collectionGroup(db, "keyboards");
-        const querySnapshot = await getDocs(keyboards);
-        const keyGroup = [];
-        querySnapshot.forEach((doc) => {
-          const keyboardItem = {};
-          keyboardItem["id"] = doc.id;
-          keyboardItem["data"] = doc.data();
-          keyGroup.push(keyboardItem);
-        });
-
-        setKeys(keyGroup);
-        console.log(keyGroup);
-      } catch (err) {
-        console.log("Error occured when fetching keyboards");
-      }
-    })();
+    fetchData();
   }, []);
-
-  const toggleAdd = (e) => {
-    e.preventDefault();
-    setAddModal(!addModal);
-    console.log("Add modal:", addModal);
-  };
 
   return (
     <div class="bg-dark text-light">
