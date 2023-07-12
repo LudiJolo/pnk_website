@@ -1,9 +1,10 @@
 import { namedQuery } from "firebase/firestore";
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { db } from "../firebase/firebase-config";
 import { doc, setDoc, addDoc, collection } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const AddKeyboard = (props) => {
   const nameRef = useRef("");
@@ -18,10 +19,24 @@ const AddKeyboard = (props) => {
   const referRef = useRef("");
   const colorRef = useRef("");
   const otherRef = useRef("");
+  const [img1, setimg1] = useState(null);
+  const [img2, setimg2] = useState(null);
+  const [img3, setimg3] = useState(null);
 
   const addHandler = (e) => {
     e.preventDefault();
     const addFunc = async () => {
+      const storage = getStorage();
+
+      // Create a reference to the image file
+      const imageRef = ref(storage, 'collections/keychron/showcase1.png');
+
+      // Retrieve the download URL of the image from Firebase Storage
+      const downloadURL = await getDownloadURL(imageRef);
+
+      console.log('Image URL:', downloadURL);
+
+
       const newKeyboard = await addDoc(collection(db, "keyboards"), {
         name: nameRef.current.value,
         desc: descRef.current.value,
@@ -41,11 +56,26 @@ const AddKeyboard = (props) => {
           colorTheme: colorRef.current.value,
           otherInfo: otherRef.current.value,
         },
+        images: {
+        },
       });
       console.log("Document written with ID: ", newKeyboard.id);
     };
     addFunc();
     props.onHide();
+  };
+
+  const handleImg1 = (e) => {
+    const file = e.target.files[0];
+    setimg1(file);
+  };
+  const handleImg2 = (e) => {
+    const file = e.target.files[0];
+    setimg2(file);
+  };
+  const handleImg3 = (e) => {
+    const file = e.target.files[0];
+    setimg3(file);
   };
 
   return (
@@ -158,6 +188,12 @@ const AddKeyboard = (props) => {
                 ref={otherRef}
                 required
               />
+            </Col>
+            <Col className="pt-3">
+              <Form.Label>Upload 3 images</Form.Label>
+              <input type="file" class="form-control" onChange={handleImg1} />
+              <input type="file" class="form-control" onChange={handleImg2} />
+              <input type="file" class="form-control" onChange={handleImg3} />
             </Col>
           </Row>
           <Button variant="success" type="submit">

@@ -24,8 +24,6 @@ import sample2 from "../collection/img/headerimg2.png";
 import sample3 from "../collection/img/headerimg3.png";
 import AddKeyboard from "./addKeyboard.js";
 
-
-
 //next step: update list after adding keybaord data
 const Admin = (props) => {
   const [keys, setKeys] = useState(null);
@@ -48,7 +46,6 @@ const Admin = (props) => {
       console.log("Error occured when fetching keyboards");
     }
   };
-
 
   useEffect(() => {
     fetchData();
@@ -83,7 +80,10 @@ const Admin = (props) => {
                       <Card.Title className="text-dark">
                         {itm.data.name}
                       </Card.Title>
-                      <Button variant="warning">Edit</Button>
+                      <div class="d-flex justify-content-between">
+                        <Button variant="warning">Edit</Button>
+                        <Button variant="danger">Delete</Button>
+                      </div>
                     </Card.Body>
                   </Card>
                 </Col>
