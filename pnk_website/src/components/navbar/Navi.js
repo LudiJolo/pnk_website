@@ -2,13 +2,19 @@ import React from "react";
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import "./navi.css";
+import logo from "./img/PNK_LOGO.png";
 function Navi() {
   return (
     <>
       <Navbar expand="lg">
         <Container>
           <Navbar.Brand href="/" id="navlogo">
-            PNK
+            <img
+              src={logo}
+              alt="Home"
+              height="30"
+              className="d-inline-block align-top"
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

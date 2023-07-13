@@ -4,39 +4,44 @@ import { useRef } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { db } from "../firebase/firebase-config";
 import { doc, setDoc, addDoc, collection } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const AddKeyboard = (props) => {
-  const nameRef = useRef("");
-  const descRef = useRef("");
-  const soundRef = useRef("");
-  const brandRef = useRef("");
-  const sizeRef = useRef("");
-  const switchRef = useRef("");
-  const spec1Ref = useRef("");
-  const spec2Ref = useRef("");
-  const spec3Ref = useRef("");
-  const referRef = useRef("");
-  const colorRef = useRef("");
-  const otherRef = useRef("");
+  const nameRef = useRef(null);
+  const descRef = useRef(null);
+  const soundRef = useRef(null);
+  const brandRef = useRef(null);
+  const sizeRef = useRef(null);
+  const switchRef = useRef(null);
+  const spec1Ref = useRef(null);
+  const spec2Ref = useRef(null);
+  const spec3Ref = useRef(null);
+  const referRef = useRef(null);
+  const colorRef = useRef(null);
+  const otherRef = useRef(null);
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
   const [img3, setimg3] = useState(null);
 
+  const handleImg1 = (e) => {
+    const file = e.target.files[0];
+    setimg1(file);
+  };
+  const handleImg2 = (e) => {
+    const file = e.target.files[0];
+    setimg2(file);
+  };
+  const handleImg3 = (e) => {
+    const file = e.target.files[0];
+    setimg3(file);
+  };
+
   const addHandler = (e) => {
     e.preventDefault();
+    const storage = getStorage();
+
+    const uploadTasks = [];
     const addFunc = async () => {
-      const storage = getStorage();
-
-      // Create a reference to the image file
-      const imageRef = ref(storage, 'collections/keychron/showcase1.png');
-
-      // Retrieve the download URL of the image from Firebase Storage
-      const downloadURL = await getDownloadURL(imageRef);
-
-      console.log('Image URL:', downloadURL);
-
-
       const newKeyboard = await addDoc(collection(db, "keyboards"), {
         name: nameRef.current.value,
         desc: descRef.current.value,
@@ -56,26 +61,47 @@ const AddKeyboard = (props) => {
           colorTheme: colorRef.current.value,
           otherInfo: otherRef.current.value,
         },
-        images: {
-        },
       });
-      console.log("Document written with ID: ", newKeyboard.id);
+      if (img1 && img2 && img3) {
+        const storageRef1 = ref(storage, img1.name);
+        const storageRef2 = ref(storage, img2.name);
+        const storageRef3 = ref(storage, img3.name);
+
+        // Upload the file to Firebase Storage
+        const uploadTask1 = uploadBytes(storageRef1, img1);
+        const uploadTask2 = uploadBytes(storageRef2, img2);
+        const uploadTask3 = uploadBytes(storageRef3, img3);
+
+        uploadTasks.push(uploadTask1);
+        uploadTasks.push(uploadTask2);
+        uploadTasks.push(uploadTask3);
+      }
+      try {
+        // Wait for all upload tasks to complete
+        const uploadResults = await Promise.all(uploadTasks);
+
+        // Get the download URL of the uploaded image
+        // Wait for all upload tasks to complete
+        const downloadURLs = await Promise.all(
+          uploadResults.map((uploadResult) => getDownloadURL(uploadResult.ref))
+        );
+
+        // Save the download URL to Firestore
+        const keyRef = doc(db, "keyboards", newKeyboard.id);
+        const imagesData = {
+          imgURL1: downloadURLs[0],
+          imgURL2: downloadURLs[1],
+          imgURL3: downloadURLs[2],
+        };
+        setDoc(keyRef, imagesData, { merge: true });
+        console.log("Image uploaded and URL saved successfully.");
+        console.log("Document written with ID: ", newKeyboard.id);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
     };
     addFunc();
     props.onHide();
-  };
-
-  const handleImg1 = (e) => {
-    const file = e.target.files[0];
-    setimg1(file);
-  };
-  const handleImg2 = (e) => {
-    const file = e.target.files[0];
-    setimg2(file);
-  };
-  const handleImg3 = (e) => {
-    const file = e.target.files[0];
-    setimg3(file);
   };
 
   return (

@@ -13,23 +13,10 @@ import showcase3 from "./img/showcase3.png";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
 
-const images = [
-  {
-    original: showcase1,
-    thumbnail: showcase1,
-  },
-  {
-    original: showcase2,
-    thumbnail: showcase2,
-  },
-  {
-    original: showcase3,
-    thumbnail: showcase3,
-  },
-];
 
 function Keyboard() {
   const [keyboard, setKeyboard] = useState(null);
+  const [images, setImages] = useState(null);
   const { keyboard_id } = useParams();
   console.log(keyboard_id);
   useEffect(() => {
@@ -40,6 +27,22 @@ function Keyboard() {
         if (itemSnap.exists()) {
           console.log("Document data:", itemSnap.data());
           setKeyboard(itemSnap.data());
+          const img = [
+            {
+              original: itemSnap.data().imgURL1,
+              thumbnail: itemSnap.data().imgURL1,
+            },
+            {
+              original: itemSnap.data().imgURL2,
+              thumbnail: itemSnap.data().imgURL2,
+            },
+            {
+              original: itemSnap.data().imgURL3,
+              thumbnail: itemSnap.data().imgURL3,
+            },
+          ];
+
+          setImages(img);
         } else {
           console.log("No such document!");
         }
@@ -67,7 +70,7 @@ function Keyboard() {
           </div>
 
           <div class="detailinfo pt-4 mb-5">
-            <ImageGallery items={images} autoPlay={true} />
+            {images && <ImageGallery items={images} autoPlay={true} />}
           </div>
           <div class="row  text-center">
             <div class=" col-md-4 mx-auto py-3">
@@ -75,9 +78,15 @@ function Keyboard() {
                 <div class="card-body">
                   <Icons.Tools className="icon" />
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-4 fs-5">{keyboard.specifics.spec1}</li>
-                    <li class="list-group-item py-4 fs-5">{keyboard.specifics.spec2}</li>
-                    <li class="list-group-item py-4 fs-5">{keyboard.specifics.spec3}</li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.specifics.spec1}
+                    </li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.specifics.spec2}
+                    </li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.specifics.spec3}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -87,9 +96,15 @@ function Keyboard() {
                 <div class="card-body">
                   <Icons.KeyboardFill className="icon" />
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-4 fs-5">{keyboard.general.brand}</li>
-                    <li class="list-group-item py-4 fs-5">{keyboard.general.size}</li>
-                    <li class="list-group-item py-4 fs-5">{keyboard.general.switch}</li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.general.brand}
+                    </li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.general.size}
+                    </li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.general.switch}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -99,9 +114,15 @@ function Keyboard() {
                 <div class="card-body">
                   <Icons.PaletteFill className="icon" />
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-4 fs-5">{keyboard.theme.reference}</li>
-                    <li class="list-group-item py-4 fs-5">{keyboard.theme.colorTheme}</li>
-                    <li class="list-group-item py-4 fs-5">{keyboard.theme.otherInfo}</li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.theme.reference}
+                    </li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.theme.colorTheme}
+                    </li>
+                    <li class="list-group-item py-4 fs-5">
+                      {keyboard.theme.otherInfo}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -113,11 +134,7 @@ function Keyboard() {
             class="mt-5 py-5 text-bg-dark shadow-lg"
           >
             <h1>Sound Test</h1>
-            <ReactPlayer
-              id="player"
-              url={keyboard.soundTest}
-              controls={true}
-            />
+            <ReactPlayer id="player" url={keyboard.soundTest} controls={true} />
           </div>
         </>
       )}
