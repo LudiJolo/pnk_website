@@ -1,13 +1,21 @@
 import React from "react";
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./navi.css";
+import logo from "./img/PNK_LOGO.png";
 function Navi() {
   return (
     <>
-      <Navbar expand="lg" >
+      <Navbar expand="lg">
         <Container>
-          <Navbar.Brand href="/" id="navlogo">PNK</Navbar.Brand>
+          <Navbar.Brand href="/" id="navlogo">
+            <img
+              src={logo}
+              alt="Home"
+              height="30"
+              className="d-inline-block align-top"
+            />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -20,7 +28,7 @@ function Navi() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Outlet/>
+      <Outlet />
     </>
   );
 }
