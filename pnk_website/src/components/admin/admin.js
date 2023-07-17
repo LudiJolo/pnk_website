@@ -23,11 +23,17 @@ import sample1 from "../collection/img/headerimg.png";
 import sample2 from "../collection/img/headerimg2.png";
 import sample3 from "../collection/img/headerimg3.png";
 import AddKeyboard from "./addKeyboard.js";
+import DeleteKeyboard from "./deleteKeyboard.js";
 
 //next step: update list after adding keybaord data
 const Admin = (props) => {
   const [keys, setKeys] = useState(null);
   const [addModal, setAddModal] = useState(false);
+  const [delModal, setDelModal] = useState(false);
+
+  const [selectedDel, setSelDel] = useState(null);
+  const [selectedDelName, setSelDelName] = useState(null);
+
   const fetchData = async () => {
     try {
       const keyboards = collectionGroup(db, "keyboards");
@@ -50,6 +56,13 @@ const Admin = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const deleteModalHandler = (e)=>{
+    setSelDel(e.target.value);
+    setSelDelName(e.target.name);
+    setDelModal(true);
+  };
+
 
   return (
     <div class="bg-dark text-light">
@@ -82,7 +95,9 @@ const Admin = (props) => {
                       </Card.Title>
                       <div class="d-flex justify-content-between">
                         <Button variant="warning">Edit</Button>
-                        <Button variant="danger">Delete</Button>
+                        <Button variant="danger" onClick={deleteModalHandler} value={itm.id} name={itm.data.name}>
+                          Delete
+                          </Button>
                       </div>
                     </Card.Body>
                   </Card>
@@ -92,6 +107,7 @@ const Admin = (props) => {
         </Container>
       </div>
       <AddKeyboard show={addModal} onHide={() => setAddModal(false)} />
+      <DeleteKeyboard keebId={selectedDel} keebName={selectedDelName} show={delModal} onHide={() => setDelModal(false)} />
     </div>
   );
 };
