@@ -1,28 +1,12 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
-import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
+import { doc, setDoc, addDoc, collection, updateDoc, getDoc } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 const EditKeyboard = (props) => {
   const [keebData, setKeeb] = useState(null);
-  const fetchDoc = async () => {
-    try {
-      if (props.show) {
-        const docRef = doc(db, "keyboards", props.keebId);
-        const docSnap = await getDoc(docRef);
-
-        setKeeb(docSnap.data());
-        console.log("Document data:", docSnap.data());
-      }
-    } catch (err) {
-      console.log("Error occured when fetching keyboard data");
-    }
-  };
-  useEffect(() => {
-    fetchDoc();
-  }, [props.show]);
-
-  const nameRef = useRef(null);
+  const [nameRef, setName] = useState(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -37,6 +21,24 @@ const EditKeyboard = (props) => {
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
   const [img3, setimg3] = useState(null);
+  const fetchDoc = async () => {
+    try {
+      if (props.show) {
+        const docRef = doc(db, "keyboards", props.keebId);
+        const docSnap = await getDoc(docRef);
+
+        setKeeb(docSnap.data());
+        console.log("Document data:", docSnap.data());
+        setName(docSnap.data().name);
+      }
+    } catch (err) {
+      console.log("Error occured when fetching keyboard data");
+    }
+  };
+  useEffect(() => {
+    fetchDoc();
+  }, [props.show]);
+
 
   const handleImg1 = (e) => {
     const file = e.target.files[0];
@@ -51,10 +53,62 @@ const EditKeyboard = (props) => {
     setimg3(file);
   };
 
-
   const submitEditHandler = (e) => {
     e.preventDefault();
-    
+    const storage = getStorage();
+    const keebRef = doc(db, 'keyboards', props.keebId);
+    const imageUploadHandler = async() =>{
+      if(img1){
+        const storageRef1 = ref(storage, img1.name);
+        const uploadTask1 = uploadBytes(storageRef1, img1);
+        const downloadURL1 = await getDownloadURL((await uploadTask1).ref);
+        await updateDoc(keebRef, {
+          imgURL1: downloadURL1,
+        })
+      }
+      if(img2){
+        const storageRef2 = ref(storage, img2.name);
+        const uploadTask2 = uploadBytes(storageRef2, img2);
+        const downloadURL2 = await getDownloadURL((await uploadTask2).ref);
+        await updateDoc(keebRef, {
+          imgURL1: downloadURL2,
+        })
+      }
+      if(img3){
+        const storageRef3 = ref(storage, img3.name);
+        const uploadTask3 = uploadBytes(storageRef3, img3);
+        const downloadURL3 = await getDownloadURL((await uploadTask3).ref);
+        await updateDoc(keebRef, {
+          imgURL3: downloadURL3,
+        })
+      }
+      const textInputHandler = async() =>{
+        const editedKeyboard = await updateDoc(keebRef, {
+          name: nameRef.current.value,
+          desc: descRef.current.value,
+          soundTest: soundRef.current.value,
+          general: {
+            brand: brandRef.current.value,
+            size: sizeRef.current.value,
+            switch: switchRef.current.value,
+          },
+          specifics: {
+            spec1: spec1Ref.current.value,
+            spec2: spec2Ref.current.value,
+            spec3: spec3Ref.current.value,
+          },
+          theme: {
+            reference: referRef.current.value,
+            colorTheme: colorRef.current.value,
+            otherInfo: otherRef.current.value,
+          },
+        });
+      };
+      imageUploadHandler();
+      textInputHandler();
+      props.onHide();
+    };
+
   };
   return (
     <Modal
@@ -79,6 +133,7 @@ const EditKeyboard = (props) => {
                   placeholder=""
                   ref={nameRef}
                   value={keebData.name}
+                  onChange={(e)=>(setName(e.target.value))}
                   required
                 />
                 <Form.Text className="text-muted">
@@ -187,17 +242,20 @@ const EditKeyboard = (props) => {
                   />
                 </Col>
                 <Col className="pt-3">
-                  <Form.Label>Re-upload 3 images</Form.Label>
+                  <Form.Label>Images</Form.Label><br/>
+                  <Form.Label>Top view</Form.Label>
                   <input
                     type="file"
                     class="form-control"
                     onChange={handleImg1}
                   />
+                  <Form.Label>Angle #1</Form.Label>
                   <input
                     type="file"
                     class="form-control"
                     onChange={handleImg2}
                   />
+                  <Form.Label>Angle #2</Form.Label>
                   <input
                     type="file"
                     class="form-control"
