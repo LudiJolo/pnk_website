@@ -79,7 +79,7 @@ const EditKeyboard = (props) => {
         const uploadTask2 = uploadBytes(storageRef2, img2);
         const downloadURL2 = await getDownloadURL((await uploadTask2).ref);
         await updateDoc(keebRef, {
-          imgURL1: downloadURL2,
+          imgURL2: downloadURL2,
         });
       }
       if (img3) {
