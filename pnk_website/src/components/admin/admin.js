@@ -23,11 +23,20 @@ import sample1 from "../collection/img/headerimg.png";
 import sample2 from "../collection/img/headerimg2.png";
 import sample3 from "../collection/img/headerimg3.png";
 import AddKeyboard from "./addKeyboard.js";
+import DeleteKeyboard from "./deleteKeyboard.js";
+import EditKeyboard from "./editKeyboard.js";
 
 //next step: update list after adding keybaord data
 const Admin = (props) => {
   const [keys, setKeys] = useState(null);
   const [addModal, setAddModal] = useState(false);
+  const [delModal, setDelModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+
+  const [selectedEdit, setSelEdit] = useState(null);
+  const [selectedDel, setSelDel] = useState(null);
+  const [selectedDelName, setSelDelName] = useState(null);
+
   const fetchData = async () => {
     try {
       const keyboards = collectionGroup(db, "keyboards");
@@ -50,6 +59,18 @@ const Admin = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const deleteModalHandler = (e)=>{
+    setSelDel(e.target.value);
+    setSelDelName(e.target.name);
+    setDelModal(true);
+  };
+
+  const editModalHandler = (e)=>{
+    setSelEdit(e.target.value);
+    setEditModal(true);
+  };
+
 
   return (
     <div class="bg-dark text-light">
@@ -75,14 +96,16 @@ const Admin = (props) => {
               keys.map((itm) => (
                 <Col md={4}>
                   <Card>
-                    <Card.Img variant="top" src={sample1} />
+                    <Card.Img variant="top" src={itm.data.imgURL1} />
                     <Card.Body>
                       <Card.Title className="text-dark">
                         {itm.data.name}
                       </Card.Title>
                       <div class="d-flex justify-content-between">
-                        <Button variant="warning">Edit</Button>
-                        <Button variant="danger">Delete</Button>
+                        <Button variant="warning" onClick={editModalHandler} value={itm.id}>Edit</Button>
+                        <Button variant="danger" onClick={deleteModalHandler} value={itm.id} name={itm.data.name}>
+                          Delete
+                          </Button>
                       </div>
                     </Card.Body>
                   </Card>
@@ -92,6 +115,8 @@ const Admin = (props) => {
         </Container>
       </div>
       <AddKeyboard show={addModal} onHide={() => setAddModal(false)} />
+      <DeleteKeyboard keebId={selectedDel} keebName={selectedDelName} show={delModal} onHide={() => setDelModal(false)} />
+      <EditKeyboard keebId={selectedEdit} show={editModal} onHide={() => setEditModal(false)}/>
     </div>
   );
 };
