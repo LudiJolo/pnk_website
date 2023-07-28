@@ -244,7 +244,7 @@ const EditKeyboard = (props) => {
                   />
                 </Col>
                 <Col className="pt-3">
-                  <Form.Label>Images</Form.Label>
+                  <Form.Label>Images (file name must be unique)</Form.Label>
                   <br />
                   <Form.Label>Top view</Form.Label>
                   <input

@@ -216,7 +216,7 @@ const AddKeyboard = (props) => {
               />
             </Col>
             <Col className="pt-3">
-              <Form.Label>Upload 3 images</Form.Label>
+              <Form.Label>Upload 3 images (filename must be unique)</Form.Label>
               <input type="file" class="form-control" onChange={handleImg1} />
               <input type="file" class="form-control" onChange={handleImg2} />
               <input type="file" class="form-control" onChange={handleImg3} />

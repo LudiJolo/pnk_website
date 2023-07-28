@@ -96,7 +96,7 @@ const Admin = (props) => {
               keys.map((itm) => (
                 <Col md={4}>
                   <Card>
-                    <Card.Img variant="top" src={sample1} />
+                    <Card.Img variant="top" src={itm.data.imgURL1} />
                     <Card.Body>
                       <Card.Title className="text-dark">
                         {itm.data.name}
