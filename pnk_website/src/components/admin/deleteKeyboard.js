@@ -13,6 +13,7 @@ const DeleteKeyboard = (props) => {
         deleteFunc();
         console.log('delete successful');
         props.onHide();
+        props.confirm();
     };
   return (
     <Modal

@@ -222,7 +222,7 @@ const AddKeyboard = (props) => {
               <input type="file" class="form-control" onChange={handleImg3} />
             </Col>
           </Row>
-          <Button variant="success" type="submit">
+          <Button variant="success" type="submit" onClick={props.confirm}>
             Confirm
           </Button>
         </Form>

@@ -14,7 +14,6 @@ import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 const EditKeyboard = (props) => {
   const [keebData, setKeeb] = useState(null);
 
-  
   const fetchDoc = async () => {
     try {
       if (props.show) {
@@ -243,6 +242,17 @@ const EditKeyboard = (props) => {
                     ref={otherRef}
                   />
                 </Col>
+                
+                <div class='mt-4'>Current Images</div>
+                <Col md={4}>
+                  <img src= {keebData.imgURL1} class="img-thumbnail" alt="Current Img 1" />
+                </Col>
+                <Col md={4}>
+                  <img src= {keebData.imgURL2} class="img-thumbnail" alt="Current Img 1" />
+                </Col>
+                <Col md={4}>
+                  <img src= {keebData.imgURL3} class="img-thumbnail" alt="Current Img 1" />
+                </Col>
                 <Col className="pt-3">
                   <Form.Label>Images (file name must be unique)</Form.Label>
                   <br />
@@ -266,7 +276,7 @@ const EditKeyboard = (props) => {
                   />
                 </Col>
               </Row>
-              <Button variant="success" type="submit">
+              <Button variant="success" type="submit" onClick={props.confirm}>
                 Confirm
               </Button>
             </Form>
