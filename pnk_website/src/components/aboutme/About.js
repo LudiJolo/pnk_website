@@ -21,10 +21,14 @@ function About() {
         </div>
         <div class="abouttext col-md-6 d-flex align-items-center">
           <p>
-            As a keyboard enthusiast, I am passionate about the art of keybaord
-            customization. My mission is to provide keyboard modding services
-            tailored to your specific preferences and/or needs. If you wish for
-            an anime themed keyboard, I can customize one for you.
+            Keyboard customization was something I’ve gotten into as of
+            recently. I am here to show people that having something premium at
+            a budget price is possible. A keyboard is a daily driver that people
+            use whether you are doing an office job, gaming, or content
+            creation. I am here to show and provide the service of having that
+            keyboard made for you. Any theme you have in mind I will do my best
+            to provide it for you. Anime. Seasons. Color schemes. Sound. You
+            name it.
           </p>
         </div>
         <div class="row">
@@ -33,12 +37,14 @@ function About() {
           </div>
           <div class="abouttext col-md-6 order-md-1 d-flex align-items-center">
             <p>
-              From keycap replacement and switch swapping to foaming
-              installment, I offer a comprehensive range of services to
-              transform your keyboard into a unique, aesthetic peripheral. I
-              value open communication, and I'm willing to work closely with you
-              throughout the modding process to ensure that your expectations
-              are met or exceeded.
+              So to repeat what I do, I provide a lubing service as well as just
+              assembling the keyboard. What I am exactly lubing are the
+              mechanical switches and the stabilizers. Lubing the mechanical
+              switches help give it a smooth press and as well as that ASMR
+              sounds that you might have seen on Youtube, Instagram, and maybe
+              Tiktok. But that is the bare minimum, not because that’s all that
+              I will provide. I want to talk to YOU the customer and go through
+              the process of making the keyboard your own.
             </p>
           </div>
         </div>
@@ -54,7 +60,9 @@ function About() {
             for the modding services while delivering exceptional craftsmanship
             and customer satisfaction. For an accurate quote for your specific
             modding project, please reach out to me to discuss your
-            requirements.
+            requirements. What makes my lubing service different from others is
+            that I charge by size rather than per switch, which can be 40-60
+            dollars more. see above for pricing
           </p>
         </div>
       </div>

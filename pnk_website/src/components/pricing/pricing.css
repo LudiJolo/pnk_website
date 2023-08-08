@@ -29,3 +29,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.pricing-disclaimer{
+  border: 5px solid rgb(236, 29, 29);
+  color: white;
+  width: 50%;
+  background-image: linear-gradient(135deg, #7c2727, #d10808);
+  margin: 0px auto;
+}
