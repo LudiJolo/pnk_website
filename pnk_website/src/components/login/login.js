@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
+import './login.css';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,11 +21,12 @@ const Login = () => {
       });
   };
   return (
-    <div>
-      <form onSubmit={signIn}>
+    <div class="login-container d-flex justify-content-center align-items-center">
+      <form class='card p-5 ' onSubmit={signIn}>
         <h1>Login</h1>
         <input
           type="email"
+          class='my-2'
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -32,12 +34,13 @@ const Login = () => {
         />
         <input
           type="password"
+          class='my-2'
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPass(e.target.value)}
           required
         />
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-primary my-2" type="submit">Login</button>
       </form>
     </div>
   );

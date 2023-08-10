@@ -1,13 +1,15 @@
 import { namedQuery } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { Modal, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import { db } from "../firebase/firebase-config";
 import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import * as Icons from "react-bootstrap-icons";
 
 const AddKeyboard = (props) => {
   const nameRef = useRef(null);
+  const keyPriceRef = useRef(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -19,9 +21,14 @@ const AddKeyboard = (props) => {
   const referRef = useRef(null);
   const colorRef = useRef(null);
   const otherRef = useRef(null);
+
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
   const [img3, setimg3] = useState(null);
+
+  const [item, setItem] = useState(null);
+  const [cost, setCost] = useState(null);
+  const [additional, setAdd] = useState([]);
 
   const handleImg1 = (e) => {
     const file = e.target.files[0];
@@ -34,6 +41,32 @@ const AddKeyboard = (props) => {
   const handleImg3 = (e) => {
     const file = e.target.files[0];
     setimg3(file);
+  };
+
+  const addCostHandler = () => {
+    if (item && cost && /^[0-9]*\.?[0-9]*$/.test(cost)) {
+      const newItmCost = { itmName: item, itmCost: cost };
+      setAdd((prevState) => [...prevState, newItmCost]);
+    }
+    setItem("");
+    setCost("");
+    console.log(additional);
+  };
+
+  const removeItem = (index) => {
+    const updatedItems = additional.filter((_, i) => i !== index);
+    setAdd(updatedItems);
+  };
+
+  const checkSizePrice = (value) =>{
+    if (parseFloat(value) <= 65)
+      return 30.00;
+    
+    else if(parseFloat(value) > 65 && parseFloat(value) < 90)
+      return 40;
+    
+    else
+      return 50;
   };
 
   const addHandler = (e) => {
@@ -61,6 +94,9 @@ const AddKeyboard = (props) => {
           colorTheme: colorRef.current.value,
           otherInfo: otherRef.current.value,
         },
+        keebPrice: keyPriceRef.current.value,
+        sizePrice:checkSizePrice(sizeRef.current.value),
+        additionals: additional,
       });
       if (img1 && img2 && img3) {
         const storageRef1 = ref(storage, img1.name);
@@ -119,8 +155,12 @@ const AddKeyboard = (props) => {
       <Modal.Body>
         <Form onSubmit={addHandler}>
           <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="" ref={nameRef} required />
+            <Form.Label>Keyboard Name and Price</Form.Label>
+            <InputGroup>
+              <Form.Control type="text" placeholder="" ref={nameRef} required />
+              <InputGroup.Text>$</InputGroup.Text>
+              <Form.Control type="text" placeholder="00.00" ref={keyPriceRef} required />
+            </InputGroup>
             <Form.Text className="text-muted">
               example: HyperX Alloy Origins
             </Form.Text>
@@ -160,12 +200,16 @@ const AddKeyboard = (props) => {
                 ref={brandRef}
                 required
               />
-              <Form.Control
-                type="text"
-                placeholder="Size"
-                ref={sizeRef}
-                required
-              />
+              <InputGroup>
+                <Form.Control
+                  type="text"
+                  placeholder="Size"
+                  ref={sizeRef}
+                  required
+                />
+                <InputGroup.Text>%</InputGroup.Text>
+              </InputGroup>
+
               <Form.Control
                 type="text"
                 placeholder="Switch type"
@@ -222,7 +266,40 @@ const AddKeyboard = (props) => {
               <input type="file" class="form-control" onChange={handleImg3} />
             </Col>
           </Row>
-          <Button variant="success" type="submit">
+          <Form.Group className="mb-3">
+            <Form.Label>Additional cost</Form.Label>
+            <InputGroup>
+              <InputGroup.Text>Item Name</InputGroup.Text>
+              <Form.Control
+                type="text"
+                value={item}
+                onChange={(e) => setItem(e.target.value)}
+              />
+              <InputGroup.Text>$</InputGroup.Text>
+              <Form.Control
+                type="text"
+                value={cost}
+                placeholder="00.00"
+                onChange={(e) => setCost(e.target.value)}
+              />
+              <Button variant="primary" onClick={addCostHandler}>
+                Add item
+              </Button>
+            </InputGroup>
+            {additional &&
+              additional.map((elem, index) => (
+                <li key={index}>
+                  {elem.itmName} - ${elem.itmCost}{" "}
+                  <Button
+                    className="m-0 p-0 btn-light"
+                    onClick={() => removeItem(index)}
+                  >
+                    <Icons.TrashFill class="text-danger" />
+                  </Button>
+                </li>
+              ))}
+          </Form.Group>
+          <Button variant="success" type="submit" onClick={props.confirm}>
             Confirm
           </Button>
         </Form>

@@ -5,6 +5,12 @@ import "./contact.css";
 function Contact() {
   return (
     <div class="contactcontainer">
+      <div class="contactform">
+        <h1 align="center">Reach out to me</h1>
+        
+      </div>
+      {/*
+      
       <form class="contactform shadow-lg mx-auto">
         <h1 align="center">Reach out to me</h1>
         <div class="form-group mb-3">
@@ -44,6 +50,7 @@ function Contact() {
           ></textarea>
         </div>
       </form>
+      */}
     </div>
   );
 }
