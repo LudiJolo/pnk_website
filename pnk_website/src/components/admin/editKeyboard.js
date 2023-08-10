@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { Modal, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import { db } from "../firebase/firebase-config";
 import {
   doc,
@@ -11,27 +11,12 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import * as Icons from "react-bootstrap-icons";
 const EditKeyboard = (props) => {
   const [keebData, setKeeb] = useState(null);
 
-  const fetchDoc = async () => {
-    try {
-      if (props.show) {
-        const docRef = doc(db, "keyboards", props.keebId);
-        const docSnap = await getDoc(docRef);
-
-        setKeeb(docSnap.data());
-        console.log("Document data:", docSnap.data());
-      }
-    } catch (err) {
-      console.log("Error occured when fetching keyboard data");
-    }
-  };
-  useEffect(() => {
-    fetchDoc();
-  }, [props.show]);
-
   const nameRef = useRef(null);
+  const keyPriceRef = useRef(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -46,6 +31,30 @@ const EditKeyboard = (props) => {
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
   const [img3, setimg3] = useState(null);
+  const [item, setItem] = useState(null);
+  const [cost, setCost] = useState(null);
+  const [additional, setAdd] = useState([]);
+
+  const fetchDoc = async () => {
+    try {
+      if (props.show) {
+        const docRef = doc(db, "keyboards", props.keebId);
+        const docSnap = await getDoc(docRef);
+
+        setKeeb(docSnap.data());
+        setAdd(docSnap.data().additionals);
+        console.log("Document data:", docSnap.data());
+      }
+    } catch (err) {
+      console.log("Error occured when fetching keyboard data");
+    }
+
+  };
+  useEffect(() => {
+    fetchDoc();
+  }, [props.show]);
+
+  
 
   const handleImg1 = (e) => {
     const file = e.target.files[0];
@@ -58,6 +67,30 @@ const EditKeyboard = (props) => {
   const handleImg3 = (e) => {
     const file = e.target.files[0];
     setimg3(file);
+  };
+  const addCostHandler = () => {
+    if (item && cost && /^[0-9]*\.?[0-9]*$/.test(cost)) {
+      const newItmCost = { itmName: item, itmCost: cost };
+      setAdd((prevState) => [...prevState, newItmCost]);
+    }
+    setItem("");
+    setCost("");
+    console.log(additional);
+  };
+  const removeItem = (index) => {
+    const updatedItems = additional.filter((_, i) => i !== index);
+    setAdd(updatedItems);
+  };
+
+  const checkSizePrice = (value) =>{
+    if (parseFloat(value) <= 65)
+      return 30.00;
+    
+    else if(parseFloat(value) > 65 && parseFloat(value) < 90)
+      return 40;
+    
+    else
+      return 50;
   };
 
   const submitEditHandler = (e) => {
@@ -93,6 +126,7 @@ const EditKeyboard = (props) => {
     const textInputHandler = async () => {
       const editedKeyboard = await updateDoc(keebRef, {
         name: nameRef.current.value ? nameRef.current.value : keebData.name,
+        keebPrice: keyPriceRef.current.value ? keyPriceRef.current.value : keebData.keebPrice,
         desc: descRef.current.value ? descRef.current.value : keebData.desc,
         soundTest: soundRef.current.value
           ? soundRef.current.value
@@ -130,6 +164,8 @@ const EditKeyboard = (props) => {
             ? otherRef.current.value
             : keebData.theme.otherInfo,
         },
+        sizePrice : checkSizePrice(sizeRef.current.value),
+        additionals: additional,
       });
     };
     imageUploadHandler();
@@ -153,12 +189,20 @@ const EditKeyboard = (props) => {
           <Modal.Body>
             <Form onSubmit={submitEditHandler}>
               <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder={keebData.name}
-                  ref={nameRef}
-                />
+                <Form.Label>Name and Price</Form.Label>
+                <InputGroup>
+                  <Form.Control
+                    type="text"
+                    placeholder={keebData.name}
+                    ref={nameRef}
+                  />
+                  <InputGroup.Text>$</InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    placeholder={keebData.keebPrice}
+                    ref={keyPriceRef}
+                  />
+                </InputGroup>
                 <Form.Text className="text-muted">
                   example: HyperX Alloy Origins
                 </Form.Text>
@@ -195,11 +239,14 @@ const EditKeyboard = (props) => {
                     placeholder={keebData.general.brand}
                     ref={brandRef}
                   />
-                  <Form.Control
-                    type="text"
-                    placeholder={keebData.general.size}
-                    ref={sizeRef}
-                  />
+                  <InputGroup>
+                    <Form.Control
+                      type="text"
+                      placeholder={keebData.general.size}
+                      ref={sizeRef}
+                    />
+                    <InputGroup.Text>%</InputGroup.Text>
+                  </InputGroup>
                   <Form.Control
                     type="text"
                     placeholder={keebData.general.switch}
@@ -242,16 +289,28 @@ const EditKeyboard = (props) => {
                     ref={otherRef}
                   />
                 </Col>
-                
-                <div class='mt-4'>Current Images</div>
+
+                <div class="mt-4">Current Images</div>
                 <Col md={4}>
-                  <img src= {keebData.imgURL1} class="img-thumbnail" alt="Current Img 1" />
+                  <img
+                    src={keebData.imgURL1}
+                    class="img-thumbnail"
+                    alt="Current Img 1"
+                  />
                 </Col>
                 <Col md={4}>
-                  <img src= {keebData.imgURL2} class="img-thumbnail" alt="Current Img 1" />
+                  <img
+                    src={keebData.imgURL2}
+                    class="img-thumbnail"
+                    alt="Current Img 1"
+                  />
                 </Col>
                 <Col md={4}>
-                  <img src= {keebData.imgURL3} class="img-thumbnail" alt="Current Img 1" />
+                  <img
+                    src={keebData.imgURL3}
+                    class="img-thumbnail"
+                    alt="Current Img 1"
+                  />
                 </Col>
                 <Col className="pt-3">
                   <Form.Label>Images (file name must be unique)</Form.Label>
@@ -276,6 +335,37 @@ const EditKeyboard = (props) => {
                   />
                 </Col>
               </Row>
+              <Form.Label>Additional cost</Form.Label>
+              <InputGroup>
+                <InputGroup.Text>Item Name</InputGroup.Text>
+                <Form.Control
+                  type="text"
+                  value={item}
+                  onChange={(e) => setItem(e.target.value)}
+                />
+                <InputGroup.Text>$</InputGroup.Text>
+                <Form.Control
+                  type="text"
+                  value={cost}
+                  placeholder="00.00"
+                  onChange={(e) => setCost(e.target.value)}
+                />
+                <Button variant="primary" onClick={addCostHandler}>
+                  Add item
+                </Button>
+              </InputGroup>
+              {additional &&
+                additional.map((elem, index) => (
+                  <li key={index}>
+                    {elem.itmName} - ${elem.itmCost}{" "}
+                    <Button
+                      className="m-0 p-0 btn-light"
+                      onClick={() => removeItem(index)}
+                    >
+                      <Icons.TrashFill class="text-danger" />
+                    </Button>
+                  </li>
+                ))}
               <Button variant="success" type="submit" onClick={props.confirm}>
                 Confirm
               </Button>

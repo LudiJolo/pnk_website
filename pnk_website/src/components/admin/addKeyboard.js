@@ -9,6 +9,7 @@ import * as Icons from "react-bootstrap-icons";
 
 const AddKeyboard = (props) => {
   const nameRef = useRef(null);
+  const keyPriceRef = useRef(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -57,6 +58,16 @@ const AddKeyboard = (props) => {
     setAdd(updatedItems);
   };
 
+  const checkSizePrice = (value) =>{
+    if (parseFloat(value) <= 65)
+      return 30.00;
+    
+    else if(parseFloat(value) > 65 && parseFloat(value) < 90)
+      return 40;
+    
+    else
+      return 50;
+  };
 
   const addHandler = (e) => {
     e.preventDefault();
@@ -83,6 +94,9 @@ const AddKeyboard = (props) => {
           colorTheme: colorRef.current.value,
           otherInfo: otherRef.current.value,
         },
+        keebPrice: keyPriceRef.current.value,
+        sizePrice:checkSizePrice(sizeRef.current.value),
+        additionals: additional,
       });
       if (img1 && img2 && img3) {
         const storageRef1 = ref(storage, img1.name);
@@ -141,8 +155,12 @@ const AddKeyboard = (props) => {
       <Modal.Body>
         <Form onSubmit={addHandler}>
           <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>Keyboard Name</Form.Label>
-            <Form.Control type="text" placeholder="" ref={nameRef} required />
+            <Form.Label>Keyboard Name and Price</Form.Label>
+            <InputGroup>
+              <Form.Control type="text" placeholder="" ref={nameRef} required />
+              <InputGroup.Text>$</InputGroup.Text>
+              <Form.Control type="text" placeholder="00.00" ref={keyPriceRef} required />
+            </InputGroup>
             <Form.Text className="text-muted">
               example: HyperX Alloy Origins
             </Form.Text>
@@ -272,7 +290,8 @@ const AddKeyboard = (props) => {
               additional.map((elem, index) => (
                 <li key={index}>
                   {elem.itmName} - ${elem.itmCost}{" "}
-                  <Button className="m-0 p-0 btn-light"
+                  <Button
+                    className="m-0 p-0 btn-light"
                     onClick={() => removeItem(index)}
                   >
                     <Icons.TrashFill class="text-danger" />
