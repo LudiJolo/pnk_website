@@ -58,15 +58,24 @@ const AddKeyboard = (props) => {
     setAdd(updatedItems);
   };
 
-  const checkSizePrice = (value) =>{
-    if (parseFloat(value) <= 65)
-      return 30.00;
-    
-    else if(parseFloat(value) > 65 && parseFloat(value) < 90)
-      return 40;
-    
-    else
-      return 50;
+  const checkSizePrice = (value) => {
+    if (parseFloat(value) <= 65) return 30.0;
+    else if (parseFloat(value) > 65 && parseFloat(value) < 90) return 40;
+    else return 50;
+  };
+
+  const calc_total = (k_price, s_price, items) => {
+    console.log(k_price);
+    console.log(s_price);
+    console.log(items);
+    let total = 0.0;
+    for(let i=0; i<items.length; i++){
+      total = total + parseFloat(items[i].itmCost);
+    }
+    total = total + k_price;
+    total = total + s_price;
+    console.log("total", total);
+    return total;
   };
 
   const addHandler = (e) => {
@@ -95,8 +104,13 @@ const AddKeyboard = (props) => {
           otherInfo: otherRef.current.value,
         },
         keebPrice: keyPriceRef.current.value,
-        sizePrice:checkSizePrice(sizeRef.current.value),
+        sizePrice: checkSizePrice(sizeRef.current.value),
         additionals: additional,
+        total: calc_total(
+          parseFloat(keyPriceRef.current.value),
+          parseFloat(sizeRef.current.value),
+          additional
+        ),
       });
       if (img1 && img2 && img3) {
         const storageRef1 = ref(storage, img1.name);
@@ -159,7 +173,12 @@ const AddKeyboard = (props) => {
             <InputGroup>
               <Form.Control type="text" placeholder="" ref={nameRef} required />
               <InputGroup.Text>$</InputGroup.Text>
-              <Form.Control type="text" placeholder="00.00" ref={keyPriceRef} required />
+              <Form.Control
+                type="text"
+                placeholder="00.00"
+                ref={keyPriceRef}
+                required
+              />
             </InputGroup>
             <Form.Text className="text-muted">
               example: HyperX Alloy Origins

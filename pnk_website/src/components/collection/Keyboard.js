@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { Tabs, Tab } from "react-bootstrap";
+import { Tabs, Tab, Button } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 import ImageGallery from "react-image-gallery";
 import ReactPlayer from "react-player";
@@ -12,11 +12,13 @@ import showcase2 from "./img/showcase2.png";
 import showcase3 from "./img/showcase3.png";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
-
+import PreCheckout from "./precheckout.js";
 
 function Keyboard() {
   const [keyboard, setKeyboard] = useState(null);
   const [images, setImages] = useState(null);
+  const [preCheckoutModal, setPrecheckout] = useState(false);
+
   const { keyboard_id } = useParams();
   console.log(keyboard_id);
   useEffect(() => {
@@ -61,7 +63,9 @@ function Keyboard() {
               <h1>{keyboard.name}</h1>
               <p>
                 Do you want this custom keyboard?{" "}
-                <a class="btn btn-primary scrollto">Buy preset</a>
+                <Button onClick={() => setPrecheckout(true)}>
+                  Buy preset
+                </Button>
               </p>
               <a class="btn btn-primary scrollto" href="#soundtest">
                 Sound test
@@ -136,6 +140,11 @@ function Keyboard() {
             <h1>Sound Test</h1>
             <ReactPlayer id="player" url={keyboard.soundTest} controls={true} />
           </div>
+          <PreCheckout
+            data={keyboard}
+            show={preCheckoutModal}
+            onHide={() => setPrecheckout(false)}
+          />
         </>
       )}
     </div>
