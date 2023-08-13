@@ -12,7 +12,7 @@ import showcase2 from "./img/showcase2.png";
 import showcase3 from "./img/showcase3.png";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
-import PreCheckout from "./precheckout.js";
+import PreCheckout from "../utils/precheckout";
 
 function Keyboard() {
   const [keyboard, setKeyboard] = useState(null);

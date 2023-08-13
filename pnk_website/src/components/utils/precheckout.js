@@ -1,7 +1,38 @@
 import React, { useState } from "react";
 import { Modal, Button, Table } from "react-bootstrap";
+import { loadStripe } from "@stripe/stripe-js";
+
+let stripePromise;
+
+const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(
+      "pk_live_51Ne8BTAdiYaqB0hWN9LAExHn0zF31uczK75jDgpYephyCjBtelLpYKixNerbQ2qS2uuvjCnLhOe1fqSlTeNnEwYu00lM6pqAWp"
+    );
+  }
+  return stripePromise;
+};
 
 const PreCheckout = (props) => {
+  const item = {
+    price:props.data.stripeProductKey,
+    quantity: 1
+
+  }
+  const checkoutOptions = {
+    lineItems: [item],
+    mode: "payment",
+    successUrl: `${window.location.origin}/collection`,
+      cancelUrl: `${window.location.origin}/collection`,
+  };
+
+  const redirectToCheckout = async () =>{
+    console.log("redirect checkout");
+
+    const stripe = await getStripe();
+    const {error} = await stripe.redirectToCheckout(checkoutOptions);
+    console.log("Stripe checkout error", error);
+  };
   return (
     <Modal
       {...props}
@@ -49,9 +80,7 @@ const PreCheckout = (props) => {
         <h3 align="end">Total: ${props.data.total}</h3>
       </Modal.Body>
       <Modal.Footer>
-        <a class="btn btn-primary">
-          Checkout
-        </a>
+        <a class="btn btn-primary" onClick={redirectToCheckout}>Checkout</a>
         <Button variant="warning" onClick={props.onHide}>
           Cancel
         </Button>

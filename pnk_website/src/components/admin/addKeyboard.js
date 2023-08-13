@@ -21,6 +21,7 @@ const AddKeyboard = (props) => {
   const referRef = useRef(null);
   const colorRef = useRef(null);
   const otherRef = useRef(null);
+  const stripeProdRef = useRef(null);
 
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
@@ -108,9 +109,10 @@ const AddKeyboard = (props) => {
         additionals: additional,
         total: calc_total(
           parseFloat(keyPriceRef.current.value),
-          parseFloat(sizeRef.current.value),
+          parseFloat(checkSizePrice(sizeRef.current.value)),
           additional
         ),
+        stripeProductKey: stripeProdRef.current.value,
       });
       if (img1 && img2 && img3) {
         const storageRef1 = ref(storage, img1.name);
@@ -317,6 +319,17 @@ const AddKeyboard = (props) => {
                   </Button>
                 </li>
               ))}
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Stripe Info</Form.Label>
+            <InputGroup>
+              <InputGroup.Text>Price Key</InputGroup.Text>
+              <Form.Control
+                type="text"
+                ref={stripeProdRef}
+                required
+              />
+            </InputGroup>
           </Form.Group>
           <Button variant="success" type="submit" onClick={props.confirm}>
             Confirm
