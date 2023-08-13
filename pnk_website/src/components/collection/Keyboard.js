@@ -104,7 +104,7 @@ function Keyboard() {
                       {keyboard.general.brand}
                     </li>
                     <li class="list-group-item py-4 fs-5">
-                      {keyboard.general.size}
+                      {keyboard.general.size}%
                     </li>
                     <li class="list-group-item py-4 fs-5">
                       {keyboard.general.switch}
