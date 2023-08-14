@@ -70,7 +70,7 @@ function Pricing() {
                   cart.
                 </li>
                 <li class="list-group-item">
-                  +$10 for every item (keyboard, switches, keycaps, etc)
+                  For example: +$10 for every item (keyboard, switches, keycaps, etc)
                 </li>
                 <li class="list-group-item">
                   Premium is paying the full price of the keyboard shown on the

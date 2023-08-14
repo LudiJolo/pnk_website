@@ -15,22 +15,21 @@ const getStripe = () => {
 
 const PreCheckout = (props) => {
   const item = {
-    price:props.data.stripeProductKey,
-    quantity: 1
-
-  }
+    price: props.data.stripeProductKey,
+    quantity: 1,
+  };
   const checkoutOptions = {
     lineItems: [item],
     mode: "payment",
     successUrl: `${window.location.origin}/collection`,
-      cancelUrl: `${window.location.origin}/collection`,
+    cancelUrl: `${window.location.origin}/collection`,
   };
 
-  const redirectToCheckout = async () =>{
+  const redirectToCheckout = async () => {
     console.log("redirect checkout");
 
     const stripe = await getStripe();
-    const {error} = await stripe.redirectToCheckout(checkoutOptions);
+    const { error } = await stripe.redirectToCheckout(checkoutOptions);
     console.log("Stripe checkout error", error);
   };
   return (
@@ -49,23 +48,8 @@ const PreCheckout = (props) => {
         <Table bordered hover>
           <thead>
             <tr>
-              <th>Item</th>
+              <th>Items</th>
               <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Keyboard</td>
-              <td>${props.data.keebPrice}</td>
-            </tr>
-            <tr>
-              <td>Size: {props.data.general.size}%</td>
-              <td>${props.data.sizePrice}</td>
-            </tr>
-          </tbody>
-          <thead>
-            <tr>
-              <th>Additional Items</th>
             </tr>
           </thead>
           <tbody>
@@ -76,11 +60,31 @@ const PreCheckout = (props) => {
               </tr>
             ))}
           </tbody>
+          <thead>
+            <tr>
+              <th>Other fees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Lubing service based on keyboard size: {props.data.general.size}
+                %
+              </td>
+              <td>${props.data.sizePrice}</td>
+            </tr>
+            <tr>
+              <td>Additional cost per item ({props.data.itemCount}) x $10</td>
+              <td>${props.data.itemCount * 10}</td>
+            </tr>
+          </tbody>
         </Table>
         <h3 align="end">Total: ${props.data.total}</h3>
       </Modal.Body>
       <Modal.Footer>
-        <a class="btn btn-primary" onClick={redirectToCheckout}>Checkout</a>
+        <a class="btn btn-primary" onClick={redirectToCheckout}>
+          Checkout
+        </a>
         <Button variant="warning" onClick={props.onHide}>
           Cancel
         </Button>

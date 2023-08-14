@@ -16,7 +16,6 @@ const EditKeyboard = (props) => {
   const [keebData, setKeeb] = useState(null);
 
   const nameRef = useRef(null);
-  const keyPriceRef = useRef(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -87,10 +86,23 @@ const EditKeyboard = (props) => {
       return 30.00;
     
     else if(parseFloat(value) > 65 && parseFloat(value) < 90)
-      return 40;
+      return 40.00;
     
     else
-      return 50;
+      return 50.00;
+  };
+
+  const calc_total = (s_price, items) => {
+    console.log(s_price);
+    console.log(items);
+    let total = 0.0;
+    for(let i=0; i<items.length; i++){
+      total = total + parseFloat(items[i].itmCost);
+    }
+    total = total + (items.length*10);
+    total = total + s_price;
+    console.log("total", total);
+    return total.toFixed(2);
   };
 
   const submitEditHandler = (e) => {
@@ -126,7 +138,6 @@ const EditKeyboard = (props) => {
     const textInputHandler = async () => {
       const editedKeyboard = await updateDoc(keebRef, {
         name: nameRef.current.value ? nameRef.current.value : keebData.name,
-        keebPrice: keyPriceRef.current.value ? keyPriceRef.current.value : keebData.keebPrice,
         desc: descRef.current.value ? descRef.current.value : keebData.desc,
         soundTest: soundRef.current.value
           ? soundRef.current.value
@@ -164,8 +175,13 @@ const EditKeyboard = (props) => {
             ? otherRef.current.value
             : keebData.theme.otherInfo,
         },
-        sizePrice : checkSizePrice(sizeRef.current.value),
+        sizePrice : sizeRef.current.value ? checkSizePrice(sizeRef.current.value): keebData.sizePrice,
         additionals: additional,
+        itemCount: additional.length,
+        total: calc_total(
+          parseFloat(checkSizePrice(sizeRef.current.value)),
+          additional
+        ),
       });
     };
     imageUploadHandler();
@@ -189,20 +205,12 @@ const EditKeyboard = (props) => {
           <Modal.Body>
             <Form onSubmit={submitEditHandler}>
               <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>Name and Price</Form.Label>
-                <InputGroup>
+                <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder={keebData.name}
                     ref={nameRef}
                   />
-                  <InputGroup.Text>$</InputGroup.Text>
-                  <Form.Control
-                    type="text"
-                    placeholder={keebData.keebPrice}
-                    ref={keyPriceRef}
-                  />
-                </InputGroup>
                 <Form.Text className="text-muted">
                   example: HyperX Alloy Origins
                 </Form.Text>

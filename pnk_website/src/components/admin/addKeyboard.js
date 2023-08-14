@@ -9,7 +9,6 @@ import * as Icons from "react-bootstrap-icons";
 
 const AddKeyboard = (props) => {
   const nameRef = useRef(null);
-  const keyPriceRef = useRef(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -61,22 +60,21 @@ const AddKeyboard = (props) => {
 
   const checkSizePrice = (value) => {
     if (parseFloat(value) <= 65) return 30.0;
-    else if (parseFloat(value) > 65 && parseFloat(value) < 90) return 40;
-    else return 50;
+    else if (parseFloat(value) > 65 && parseFloat(value) < 90) return 40.0;
+    else return 50.0;
   };
 
-  const calc_total = (k_price, s_price, items) => {
-    console.log(k_price);
+  const calc_total = (s_price, items) => {
     console.log(s_price);
     console.log(items);
     let total = 0.0;
     for(let i=0; i<items.length; i++){
       total = total + parseFloat(items[i].itmCost);
     }
-    total = total + k_price;
+    total = total + (items.length*10);
     total = total + s_price;
     console.log("total", total);
-    return total;
+    return total.toFixed(2);
   };
 
   const addHandler = (e) => {
@@ -104,11 +102,10 @@ const AddKeyboard = (props) => {
           colorTheme: colorRef.current.value,
           otherInfo: otherRef.current.value,
         },
-        keebPrice: keyPriceRef.current.value,
         sizePrice: checkSizePrice(sizeRef.current.value),
         additionals: additional,
+        itemCount: additional.length,
         total: calc_total(
-          parseFloat(keyPriceRef.current.value),
           parseFloat(checkSizePrice(sizeRef.current.value)),
           additional
         ),
@@ -171,17 +168,8 @@ const AddKeyboard = (props) => {
       <Modal.Body>
         <Form onSubmit={addHandler}>
           <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>Keyboard Name and Price</Form.Label>
-            <InputGroup>
+            <Form.Label>Keyboard Name</Form.Label>
               <Form.Control type="text" placeholder="" ref={nameRef} required />
-              <InputGroup.Text>$</InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="00.00"
-                ref={keyPriceRef}
-                required
-              />
-            </InputGroup>
             <Form.Text className="text-muted">
               example: HyperX Alloy Origins
             </Form.Text>
@@ -288,7 +276,7 @@ const AddKeyboard = (props) => {
             </Col>
           </Row>
           <Form.Group className="mb-3">
-            <Form.Label>Additional cost</Form.Label>
+            <Form.Label>Item costs</Form.Label>
             <InputGroup>
               <InputGroup.Text>Item Name</InputGroup.Text>
               <Form.Control
