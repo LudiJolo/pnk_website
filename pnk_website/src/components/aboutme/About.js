@@ -2,7 +2,7 @@ import React from "react";
 import "./about.css";
 import showcase1 from "./img/showcase1.png";
 import showcase2 from "./img/showcase2.png";
-import showcase3 from "./img/showcase3.png";
+import showcase3 from "./img/showcase3.mp4";
 import { Link } from "react-router-dom";
 
 function About() {
@@ -49,7 +49,10 @@ function About() {
           </div>
         </div>
         <div class="col-md-6 py-3 d-flex align-items-center">
-          <img class="aboutimg " src={showcase3} />
+          <video controls>
+            <source src={showcase3} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         <div class="abouttext col-md-6 d-flex align-items-center">
           <p>

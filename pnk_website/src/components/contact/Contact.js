@@ -1,13 +1,49 @@
 import { React, useReducer } from "react";
 import emailjs from "@emailjs/browser";
 import "./contact.css";
-
+import { Row } from "react-bootstrap";
+import * as Icons from "react-bootstrap-icons";
 function Contact() {
   return (
     <div class="contactcontainer">
-      <div class="contactform">
-        <h1 align="center">Reach out to me</h1>
-        
+      <div align="center" class="contactform">
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="info-box mb-4">
+              <Icons.EnvelopeAtFill className="i" />
+              <br />
+              <a href="mailto:prettyneatkeys@gmail.com">
+                prettyneatkeys@gmail.com
+              </a>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <div class="info-box mb-4">
+              <Icons.TelephoneFill className="i" />
+              <br />
+              <p>(323) 286-3605</p>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <div class="info-box mb-4">
+              <Icons.People className="i" />
+              <br />
+              <p>Socials</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="https://www.youtube.com/@PrettyNeatKeyboardsPNK">
+                    <Icons.Youtube className="social-icon" />
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a href="https://www.instagram.com/prettyneatkeys/">
+                    <Icons.Instagram className="social-icon " />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       {/*
       

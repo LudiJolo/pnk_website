@@ -92,7 +92,7 @@ const EditKeyboard = (props) => {
     for (let i = 0; i < items.length; i++) {
       total = total + parseFloat(items[i].itmCost);
     }
-    total = total + items.length * 10;
+    total = total + (items.length * 10);
     total = total + s_price;
     console.log("total", total);
     return total.toFixed(2);
