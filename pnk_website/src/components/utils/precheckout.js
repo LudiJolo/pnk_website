@@ -82,7 +82,7 @@ const PreCheckout = (props) => {
         <h3 align="end">Total: ${props.data.total}</h3>
       </Modal.Body>
       <Modal.Footer>
-        <a class="btn btn-primary" onClick={redirectToCheckout}>
+        <a class="btn btn-primary" href="https://buy.stripe.com/9AQeWA86QeTSc4UcMM">
           Checkout
         </a>
         <Button variant="warning" onClick={props.onHide}>
