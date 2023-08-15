@@ -27,6 +27,7 @@ const EditKeyboard = (props) => {
   const referRef = useRef(null);
   const colorRef = useRef(null);
   const otherRef = useRef(null);
+  const stripeProdRef = useRef(null);
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
   const [img3, setimg3] = useState(null);
@@ -47,13 +48,10 @@ const EditKeyboard = (props) => {
     } catch (err) {
       console.log("Error occured when fetching keyboard data");
     }
-
   };
   useEffect(() => {
     fetchDoc();
   }, [props.show]);
-
-  
 
   const handleImg1 = (e) => {
     const file = e.target.files[0];
@@ -81,25 +79,20 @@ const EditKeyboard = (props) => {
     setAdd(updatedItems);
   };
 
-  const checkSizePrice = (value) =>{
-    if (parseFloat(value) <= 65)
-      return 30.00;
-    
-    else if(parseFloat(value) > 65 && parseFloat(value) < 90)
-      return 40.00;
-    
-    else
-      return 50.00;
+  const checkSizePrice = (value) => {
+    if (parseFloat(value) <= 65) return 30.0;
+    else if (parseFloat(value) > 65 && parseFloat(value) < 90) return 40.0;
+    else return 50.0;
   };
 
   const calc_total = (s_price, items) => {
     console.log(s_price);
     console.log(items);
     let total = 0.0;
-    for(let i=0; i<items.length; i++){
+    for (let i = 0; i < items.length; i++) {
       total = total + parseFloat(items[i].itmCost);
     }
-    total = total + (items.length*10);
+    total = total + items.length * 10;
     total = total + s_price;
     console.log("total", total);
     return total.toFixed(2);
@@ -175,13 +168,18 @@ const EditKeyboard = (props) => {
             ? otherRef.current.value
             : keebData.theme.otherInfo,
         },
-        sizePrice : sizeRef.current.value ? checkSizePrice(sizeRef.current.value): keebData.sizePrice,
+        sizePrice: sizeRef.current.value
+          ? checkSizePrice(sizeRef.current.value)
+          : keebData.sizePrice,
         additionals: additional,
         itemCount: additional.length,
         total: calc_total(
           parseFloat(checkSizePrice(sizeRef.current.value)),
           additional
         ),
+        stripeProductKey: stripeProdRef.current.value
+          ? stripeProdRef.current.value
+          : keebData.stripeProductKey,
       });
     };
     imageUploadHandler();
@@ -206,11 +204,11 @@ const EditKeyboard = (props) => {
             <Form onSubmit={submitEditHandler}>
               <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder={keebData.name}
-                    ref={nameRef}
-                  />
+                <Form.Control
+                  type="text"
+                  placeholder={keebData.name}
+                  ref={nameRef}
+                />
                 <Form.Text className="text-muted">
                   example: HyperX Alloy Origins
                 </Form.Text>
@@ -374,6 +372,18 @@ const EditKeyboard = (props) => {
                     </Button>
                   </li>
                 ))}
+              <Form.Group className="mb-3">
+                <Form.Label>Stripe Info</Form.Label>
+                <InputGroup>
+                  <InputGroup.Text>Price Key</InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    placeholder={keebData.stripeProductKey}
+                    ref={stripeProdRef}
+                    required
+                  />
+                </InputGroup>
+              </Form.Group>
               <Button variant="success" type="submit" onClick={props.confirm}>
                 Confirm
               </Button>
