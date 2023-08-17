@@ -20,7 +20,7 @@ const AddKeyboard = (props) => {
   const referRef = useRef(null);
   const colorRef = useRef(null);
   const otherRef = useRef(null);
-  const stripeProdRef = useRef(null);
+  const stripeLinkRef = useRef(null);
 
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
@@ -59,8 +59,8 @@ const AddKeyboard = (props) => {
   };
 
   const checkSizePrice = (value) => {
-    if (parseFloat(value) <= 65) return 30.0;
-    else if (parseFloat(value) > 65 && parseFloat(value) < 90) return 40.0;
+    if (parseFloat(value) <= 65.00) return 30.0;
+    else if (parseFloat(value) > 65.00 && parseFloat(value) < 90.00) return 40.0;
     else return 50.0;
   };
 
@@ -109,7 +109,7 @@ const AddKeyboard = (props) => {
           parseFloat(checkSizePrice(sizeRef.current.value)),
           additional
         ),
-        stripeProductKey: stripeProdRef.current.value,
+        stripeLink: stripeLinkRef.current.value,
       });
       if (img1 && img2 && img3) {
         const storageRef1 = ref(storage, img1.name);
@@ -311,10 +311,10 @@ const AddKeyboard = (props) => {
           <Form.Group className="mb-3">
             <Form.Label>Stripe Info</Form.Label>
             <InputGroup>
-              <InputGroup.Text>Price Key</InputGroup.Text>
+              <InputGroup.Text>Price Link</InputGroup.Text>
               <Form.Control
                 type="text"
-                ref={stripeProdRef}
+                ref={stripeLinkRef}
                 required
               />
             </InputGroup>

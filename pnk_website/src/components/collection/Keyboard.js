@@ -38,10 +38,6 @@ function Keyboard() {
               original: itemSnap.data().imgURL2,
               thumbnail: itemSnap.data().imgURL2,
             },
-            {
-              original: itemSnap.data().imgURL3,
-              thumbnail: itemSnap.data().imgURL3,
-            },
           ];
 
           setImages(img);
@@ -58,7 +54,7 @@ function Keyboard() {
     <div class="detailcontainer p-md-3">
       {keyboard && (
         <>
-          <div class="jumbotron">
+          <div class="jumbotron bg-secondary">
             <div>
               <h1>{keyboard.name}</h1>
               <p>

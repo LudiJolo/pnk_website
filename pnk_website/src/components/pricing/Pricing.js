@@ -7,7 +7,7 @@ function Pricing() {
         <div class="col-12 mx-0 " align="center">
           <h1 class="p-1 pt-md-4">Modding services based on keyboard size</h1>
           <h2 class="pricing-disclaimer p-1 pt-md-4">
-            SERVICES ONLY IN THESE AREAS: Eagle Rock, Glendale/Americana, Old
+            SERVICES ONLY IN THESE AREAS: Eagle Rock, Glendale / Americana, Old
             Town Pasadena
           </h2>
           <div class="row keysize m-1 my-md-4">

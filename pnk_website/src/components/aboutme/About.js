@@ -49,7 +49,7 @@ function About() {
           </div>
         </div>
         <div class="col-md-6 py-3 d-flex align-items-center">
-          <video controls>
+          <video class="video" controls>
             <source src={showcase3} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

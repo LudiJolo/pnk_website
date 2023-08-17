@@ -27,7 +27,7 @@ const EditKeyboard = (props) => {
   const referRef = useRef(null);
   const colorRef = useRef(null);
   const otherRef = useRef(null);
-  const stripeProdRef = useRef(null);
+  const stripeLinkRef = useRef(null);
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
   const [img3, setimg3] = useState(null);
@@ -80,20 +80,20 @@ const EditKeyboard = (props) => {
   };
 
   const checkSizePrice = (value) => {
-    if (parseFloat(value) <= 65) return 30.0;
-    else if (parseFloat(value) > 65 && parseFloat(value) < 90) return 40.0;
+    if (parseFloat(value) <= 65.00) return 30.0;
+    else if (parseFloat(value) > 65.00 && parseFloat(value) < 90.00) return 40.0;
     else return 50.0;
   };
 
-  const calc_total = (s_price, items) => {
-    console.log(s_price);
+  const calc_total = (size, items) => {
+    console.log(size);
     console.log(items);
     let total = 0.0;
     for (let i = 0; i < items.length; i++) {
       total = total + parseFloat(items[i].itmCost);
     }
     total = total + (items.length * 10);
-    total = total + s_price;
+    total = total + checkSizePrice(size);
     console.log("total", total);
     return total.toFixed(2);
   };
@@ -174,12 +174,12 @@ const EditKeyboard = (props) => {
         additionals: additional,
         itemCount: additional.length,
         total: calc_total(
-          parseFloat(checkSizePrice(sizeRef.current.value)),
+          parseFloat(sizeRef.current.value?sizeRef.current.value: keebData.general.size),
           additional
         ),
-        stripeProductKey: stripeProdRef.current.value
-          ? stripeProdRef.current.value
-          : keebData.stripeProductKey,
+        stripeLink: stripeLinkRef.current.value
+          ? stripeLinkRef.current.value
+          : keebData.stripeLink,
       });
     };
     imageUploadHandler();
@@ -375,12 +375,11 @@ const EditKeyboard = (props) => {
               <Form.Group className="mb-3">
                 <Form.Label>Stripe Info</Form.Label>
                 <InputGroup>
-                  <InputGroup.Text>Price Key</InputGroup.Text>
+                  <InputGroup.Text>Price Link</InputGroup.Text>
                   <Form.Control
                     type="text"
-                    placeholder={keebData.stripeProductKey}
-                    ref={stripeProdRef}
-                    required
+                    placeholder={keebData.stripeLink}
+                    ref={stripeLinkRef}
                   />
                 </InputGroup>
               </Form.Group>
