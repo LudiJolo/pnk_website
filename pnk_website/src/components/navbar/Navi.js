@@ -21,6 +21,7 @@ function Navi() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/about">About PNK</Nav.Link>
+              <Nav.Link href="/request" className="text-warning">Custom Requests</Nav.Link>
               <Nav.Link href="/collection">Collection</Nav.Link>
               <Nav.Link href="/pricing">Pricing</Nav.Link>
               <Nav.Link href="/contact">Contact</Nav.Link>
