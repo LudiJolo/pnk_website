@@ -12,16 +12,10 @@ function Contact() {
             <div class="info-box mb-4">
               <Icons.EnvelopeAtFill className="i" />
               <br />
+              <p>Email</p>
               <a href="mailto:prettyneatkeys@gmail.com">
                 prettyneatkeys@gmail.com
               </a>
-            </div>
-          </div>
-          <div class="col-12 text-center">
-            <div class="info-box mb-4">
-              <Icons.TelephoneFill className="i" />
-              <br />
-              <p>(323) 286-3605</p>
             </div>
           </div>
           <div class="col-12 text-center">
