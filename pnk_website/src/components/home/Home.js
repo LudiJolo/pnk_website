@@ -47,6 +47,7 @@ function Home() {
         </div>
       </div>
       <div class="row mx-auto bg-dark">
+        {/*
         <div class="col-md-6 mx-auto p-3">
           <div class="card">
             <div class="card-header">Featured</div>
@@ -63,7 +64,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div class="col-md-6 mx-auto p-3">
+          <div class="col-md-6 mx-auto p-3">
           <div class="card">
             <div class="card-header">Featured</div>
             <img class="card-img-top" src={headerimg2} />
@@ -79,14 +80,16 @@ function Home() {
             </div>
           </div>
         </div>
+        
         <div align="center" class="mb-3">
           <Link to="/collection/" class="btn btn-primary">
             More keyboards
           </Link>
         </div>
+      */}
       </div>
 
-      <div class="jumbotron" align="center">
+      <div class="jumbotron border-top border-dark" align="center">
         <div>
           <h1>Pricing</h1>
           <p>Offering two options that fits to your budget.</p>

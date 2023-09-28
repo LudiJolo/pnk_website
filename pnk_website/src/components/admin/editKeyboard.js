@@ -16,7 +16,6 @@ const EditKeyboard = (props) => {
   const [keebData, setKeeb] = useState(null);
 
   const nameRef = useRef(null);
-  const keyPriceRef = useRef(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -28,6 +27,7 @@ const EditKeyboard = (props) => {
   const referRef = useRef(null);
   const colorRef = useRef(null);
   const otherRef = useRef(null);
+  const stripeLinkRef = useRef(null);
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
   const [img3, setimg3] = useState(null);
@@ -48,13 +48,10 @@ const EditKeyboard = (props) => {
     } catch (err) {
       console.log("Error occured when fetching keyboard data");
     }
-
   };
   useEffect(() => {
     fetchDoc();
   }, [props.show]);
-
-  
 
   const handleImg1 = (e) => {
     const file = e.target.files[0];
@@ -82,15 +79,23 @@ const EditKeyboard = (props) => {
     setAdd(updatedItems);
   };
 
-  const checkSizePrice = (value) =>{
-    if (parseFloat(value) <= 65)
-      return 30.00;
-    
-    else if(parseFloat(value) > 65 && parseFloat(value) < 90)
-      return 40;
-    
-    else
-      return 50;
+  const checkSizePrice = (value) => {
+    if (parseFloat(value) <= 65.00) return 30.0;
+    else if (parseFloat(value) > 65.00 && parseFloat(value) < 90.00) return 40.0;
+    else return 50.0;
+  };
+
+  const calc_total = (size, items) => {
+    console.log(size);
+    console.log(items);
+    let total = 0.0;
+    for (let i = 0; i < items.length; i++) {
+      total = total + parseFloat(items[i].itmCost);
+    }
+    total = total + (items.length * 10);
+    total = total + checkSizePrice(size);
+    console.log("total", total);
+    return total.toFixed(2);
   };
 
   const submitEditHandler = (e) => {
@@ -126,7 +131,6 @@ const EditKeyboard = (props) => {
     const textInputHandler = async () => {
       const editedKeyboard = await updateDoc(keebRef, {
         name: nameRef.current.value ? nameRef.current.value : keebData.name,
-        keebPrice: keyPriceRef.current.value ? keyPriceRef.current.value : keebData.keebPrice,
         desc: descRef.current.value ? descRef.current.value : keebData.desc,
         soundTest: soundRef.current.value
           ? soundRef.current.value
@@ -164,8 +168,18 @@ const EditKeyboard = (props) => {
             ? otherRef.current.value
             : keebData.theme.otherInfo,
         },
-        sizePrice : checkSizePrice(sizeRef.current.value),
+        sizePrice: sizeRef.current.value
+          ? checkSizePrice(sizeRef.current.value)
+          : keebData.sizePrice,
         additionals: additional,
+        itemCount: additional.length,
+        total: calc_total(
+          parseFloat(sizeRef.current.value?sizeRef.current.value: keebData.general.size),
+          additional
+        ),
+        stripeLink: stripeLinkRef.current.value
+          ? stripeLinkRef.current.value
+          : keebData.stripeLink,
       });
     };
     imageUploadHandler();
@@ -189,20 +203,12 @@ const EditKeyboard = (props) => {
           <Modal.Body>
             <Form onSubmit={submitEditHandler}>
               <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>Name and Price</Form.Label>
-                <InputGroup>
-                  <Form.Control
-                    type="text"
-                    placeholder={keebData.name}
-                    ref={nameRef}
-                  />
-                  <InputGroup.Text>$</InputGroup.Text>
-                  <Form.Control
-                    type="text"
-                    placeholder={keebData.keebPrice}
-                    ref={keyPriceRef}
-                  />
-                </InputGroup>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder={keebData.name}
+                  ref={nameRef}
+                />
                 <Form.Text className="text-muted">
                   example: HyperX Alloy Origins
                 </Form.Text>
@@ -366,6 +372,17 @@ const EditKeyboard = (props) => {
                     </Button>
                   </li>
                 ))}
+              <Form.Group className="mb-3">
+                <Form.Label>Stripe Info</Form.Label>
+                <InputGroup>
+                  <InputGroup.Text>Price Link</InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    placeholder={keebData.stripeLink}
+                    ref={stripeLinkRef}
+                  />
+                </InputGroup>
+              </Form.Group>
               <Button variant="success" type="submit" onClick={props.confirm}>
                 Confirm
               </Button>

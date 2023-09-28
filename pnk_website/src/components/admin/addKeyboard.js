@@ -9,7 +9,6 @@ import * as Icons from "react-bootstrap-icons";
 
 const AddKeyboard = (props) => {
   const nameRef = useRef(null);
-  const keyPriceRef = useRef(null);
   const descRef = useRef(null);
   const soundRef = useRef(null);
   const brandRef = useRef(null);
@@ -21,6 +20,7 @@ const AddKeyboard = (props) => {
   const referRef = useRef(null);
   const colorRef = useRef(null);
   const otherRef = useRef(null);
+  const stripeLinkRef = useRef(null);
 
   const [img1, setimg1] = useState(null);
   const [img2, setimg2] = useState(null);
@@ -58,15 +58,23 @@ const AddKeyboard = (props) => {
     setAdd(updatedItems);
   };
 
-  const checkSizePrice = (value) =>{
-    if (parseFloat(value) <= 65)
-      return 30.00;
-    
-    else if(parseFloat(value) > 65 && parseFloat(value) < 90)
-      return 40;
-    
-    else
-      return 50;
+  const checkSizePrice = (value) => {
+    if (parseFloat(value) <= 65.00) return 30.0;
+    else if (parseFloat(value) > 65.00 && parseFloat(value) < 90.00) return 40.0;
+    else return 50.0;
+  };
+
+  const calc_total = (s_price, items) => {
+    console.log(s_price);
+    console.log(items);
+    let total = 0.0;
+    for(let i=0; i<items.length; i++){
+      total = total + parseFloat(items[i].itmCost);
+    }
+    total = total + (items.length*10);
+    total = total + s_price;
+    console.log("total", total);
+    return total.toFixed(2);
   };
 
   const addHandler = (e) => {
@@ -94,9 +102,14 @@ const AddKeyboard = (props) => {
           colorTheme: colorRef.current.value,
           otherInfo: otherRef.current.value,
         },
-        keebPrice: keyPriceRef.current.value,
-        sizePrice:checkSizePrice(sizeRef.current.value),
+        sizePrice: checkSizePrice(sizeRef.current.value),
         additionals: additional,
+        itemCount: additional.length,
+        total: calc_total(
+          parseFloat(checkSizePrice(sizeRef.current.value)),
+          additional
+        ),
+        stripeLink: stripeLinkRef.current.value,
       });
       if (img1 && img2 && img3) {
         const storageRef1 = ref(storage, img1.name);
@@ -155,12 +168,8 @@ const AddKeyboard = (props) => {
       <Modal.Body>
         <Form onSubmit={addHandler}>
           <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>Keyboard Name and Price</Form.Label>
-            <InputGroup>
+            <Form.Label>Keyboard Name</Form.Label>
               <Form.Control type="text" placeholder="" ref={nameRef} required />
-              <InputGroup.Text>$</InputGroup.Text>
-              <Form.Control type="text" placeholder="00.00" ref={keyPriceRef} required />
-            </InputGroup>
             <Form.Text className="text-muted">
               example: HyperX Alloy Origins
             </Form.Text>
@@ -267,7 +276,7 @@ const AddKeyboard = (props) => {
             </Col>
           </Row>
           <Form.Group className="mb-3">
-            <Form.Label>Additional cost</Form.Label>
+            <Form.Label>Item costs</Form.Label>
             <InputGroup>
               <InputGroup.Text>Item Name</InputGroup.Text>
               <Form.Control
@@ -298,6 +307,17 @@ const AddKeyboard = (props) => {
                   </Button>
                 </li>
               ))}
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Stripe Info</Form.Label>
+            <InputGroup>
+              <InputGroup.Text>Price Link</InputGroup.Text>
+              <Form.Control
+                type="text"
+                ref={stripeLinkRef}
+                required
+              />
+            </InputGroup>
           </Form.Group>
           <Button variant="success" type="submit" onClick={props.confirm}>
             Confirm

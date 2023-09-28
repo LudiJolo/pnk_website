@@ -13,6 +13,7 @@ import Collection from "./components/collection/Collection";
 import Keyboard from "./components/collection/Keyboard";
 import Login from "./components/login/login";
 import Authenticate from "./components/login/Authenticate";
+import Request from "./components/request/Request";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="pricing" element={<Pricing />} />
+            <Route path="request" element={<Request />} />
             <Route path="collection">
               <Route index={true} element={<Collection />} />
               <Route path=":keyboard_id" element={<Keyboard />} />
