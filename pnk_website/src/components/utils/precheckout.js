@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal, Button, Table } from "react-bootstrap";
-import { loadStripe } from "@stripe/stripe-js";
 
 
 const PreCheckout = (props) => {

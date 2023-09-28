@@ -35,7 +35,7 @@ const Request = () => {
           className="mx-auto btn-success"
           disabled
         >
-          Form coming soon
+          form coming soon
         </Button>
         <br />
         <br />
@@ -64,8 +64,16 @@ const Request = () => {
               Pay using your desired payment method once the keyboard is
               finished
             </div>
+            <Lottie
+              class="col-md-3"
+              animationData={payment}
+              style={anim_style}
+            />
           </div>
-    </>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Request;
