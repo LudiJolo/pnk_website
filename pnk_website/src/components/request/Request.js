@@ -33,8 +33,9 @@ const Request = () => {
         <Button
           href="https://docs.google.com/forms/d/e/1FAIpQLSf_HLUvlvUCc6lyAq1O_VIF34DbZ-xeAupn2t7b4a7INpWXdQ/viewform"
           className="mx-auto btn-success"
+          disabled
         >
-          Request form
+          Form coming soon
         </Button>
         <br />
         <br />
