@@ -58,6 +58,7 @@ function Collection() {
                     View
                   </Link>
                 </div>
+                
               </div>
             </div>
           ))}
