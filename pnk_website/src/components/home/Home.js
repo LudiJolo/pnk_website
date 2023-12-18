@@ -6,7 +6,8 @@ import "./home.css";
 import headerimg from "./img/headerimg.png";
 import headerimg2 from "./img/headerimg2.png";
 import headerimg3 from "./img/headerimg3.png";
-
+import yt from "./img/YouTube-Emblem.png";
+import ig from "./img/ig.png";
 function Home() {
   return (
     <div>
@@ -38,11 +39,12 @@ function Home() {
       </div>
       <div class="jumbotron" align="center">
         <div>
-          <h1>Keyboard Modding Service</h1>
+          <h1>Welcome</h1>
           <p>
-            Specializes in customizing mechanical keyboards based on style,
-            comfort, and functionality around the Eagle Rock, CA area and its
-            neighboring areas.
+            We are PNK! We are a keyboard assembly and modding service that
+            specializes in customizing mechanical keyboards based on style,
+            comfort, and functionality at budget prices! Check our other tabs
+            for more info!
           </p>
         </div>
       </div>
@@ -90,45 +92,22 @@ function Home() {
       </div>
 
       <div class="jumbotron border-top border-dark" align="center">
+        <h1 class="mb-5">Follow our socials below:</h1>
         <div>
-          <h1>Pricing</h1>
-          <p>Offering two options that fits to your budget.</p>
-        </div>
-      </div>
-      <div class="row mx-auto p-5 bg-dark">
-        <div class="col-md-6 pb-3 pb-md-0">
-          <Link
-            className="pricinglink"
-            to="/pricing/"
-            style={{ textDecoration: "none" }}
-          >
-            <div class="icon-box">
-              <div class="homeicon">
-                <div class="i">
-                  <Icons.Coin className="priceicon" />
-                </div>
-              </div>
-              <h4>"Free"mium</h4>
-              <p>Requires existing physical keyboard</p>
-            </div>
-          </Link>
-        </div>
-        <div class="col-md-6">
-          <Link
-            className="pricinglink"
-            to="/pricing/"
-            style={{ textDecoration: "none" }}
-          >
-            <div class="icon-box">
-              <div class="homeicon">
-                <div class="i">
-                  <Icons.CashCoin className="priceicon" />
-                </div>
-              </div>
-              <h4>Premium</h4>
-              <p>Fast service</p>
-            </div>
-          </Link>
+          <a href="https://www.youtube.com/@PrettyNeatKeyboardsPNK" style={{ marginRight: '3em' }}>
+            <img
+              src={yt}
+              class="img-fluid"
+              style={{ maxWidth: "100px", height: "auto" }}
+            />
+          </a>
+          <a href="https://www.instagram.com/prettyneatkeys/">
+            <img
+              src={ig}
+              class="img-fluid"
+              style={{ maxWidth: "67px", height: "auto" }}
+            />
+          </a>
         </div>
       </div>
     </div>
