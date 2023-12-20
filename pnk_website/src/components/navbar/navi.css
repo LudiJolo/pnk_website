@@ -7,3 +7,7 @@
 #navlogo{
     font-family:beyno;
 }
+
+#basic-navbar-nav .nav-link:hover{
+    color: #ffffff; /* Set your desired text color */
+}

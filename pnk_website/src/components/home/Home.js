@@ -8,6 +8,7 @@ import headerimg2 from "./img/headerimg2.png";
 import headerimg3 from "./img/headerimg3.png";
 import yt from "./img/YouTube-Emblem.png";
 import ig from "./img/ig.png";
+import aaron from "./img/aaronKeyboard.jpg";
 function Home() {
   return (
     <div>
@@ -46,6 +47,11 @@ function Home() {
             comfort, and functionality at budget prices! Check our other tabs
             for more info!
           </p>
+          <img
+            src={aaron}
+            class="img-fluid rounded-4 shadow-lg"
+            style={{ width: "30rem" }}
+          />
         </div>
       </div>
       <div class="row mx-auto bg-dark">
@@ -94,17 +100,20 @@ function Home() {
       <div class="jumbotron border-top border-dark" align="center">
         <h1 class="mb-5">Follow our socials below:</h1>
         <div>
-          <a href="https://www.youtube.com/@PrettyNeatKeyboardsPNK" style={{ marginRight: '3em' }}>
+          <a
+            href="https://www.youtube.com/@PrettyNeatKeyboardsPNK"
+            style={{ marginRight: "3em" }}
+          >
             <img
               src={yt}
-              class="img-fluid"
+              class="img-fluid social-icon"
               style={{ maxWidth: "100px", height: "auto" }}
             />
           </a>
           <a href="https://www.instagram.com/prettyneatkeys/">
             <img
               src={ig}
-              class="img-fluid"
+              class="img-fluid social-icon"
               style={{ maxWidth: "67px", height: "auto" }}
             />
           </a>

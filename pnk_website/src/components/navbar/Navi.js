@@ -22,7 +22,7 @@ function Navi() {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/about">About PNK</Nav.Link>
               <Nav.Link href="/pricing">Pricing Guide</Nav.Link>
-              <Nav.Link href="/">Purchase</Nav.Link>
+              <Nav.Link href="/purchase">Purchase</Nav.Link>
               {/*<Nav.Link href="/request" className="text-warning">Custom Requests</Nav.Link> */}
               <Nav.Link href="/collection">Collection</Nav.Link>
               <Nav.Link href="/contact">Contact</Nav.Link>

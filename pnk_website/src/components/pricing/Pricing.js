@@ -19,12 +19,41 @@ function Pricing() {
   return (
     <div class="pricing container-fluid pt-5 ">
       <div class="row py-3 d-flex">
-        <div class="col-12 mx-0 " align="center">
+        <div class="col-12 mx-0 px-5 pricing-disclaimer" align="center">
           <h1 class="p-1 pt-md-4">Guide for Pricing</h1>
-          <h2 class="pricing-disclaimer p-1 pt-md-4">
-            - SERVICES ONLY IN THESE AREAS: Eagle Rock, Glendale / Americana,
+          <h2 class=" p-1">
+            SERVICES ONLY IN THESE AREAS at SoCal: Eagle Rock, Glendale / Americana,
             Old Town Pasadena
           </h2>
+          <ul>
+            <li>
+              Majority of the keyboards I will be working on are going to be
+              hot-swappable mechanical keyboards, with the exception of certain
+              membrane keyboards.
+            </li>
+            <li>
+              We don't do shipping YET as we are not comfortable on charging
+              people for at the moment, hence when giving/receiving keyboards we
+              will meet in specific areas around the ones stated.
+            </li>
+            <li>
+              For keyboards in our collection, the prices may change due to
+              different items being on sale. We will update the prices monthly
+              to keep you up to date on what keyboards seem affordable for you.
+            </li>
+            <li>
+              We do not provide soldering services until we are at a space where
+              we are able to comfortably perform this service. If you ask me to
+              mod a keyboard that needs to be soldered, then we can talk prices
+              from there.
+            </li>
+            <li>
+              Each service has a level of priority. What that means whatever
+              service you pay for, is the one that gets to be worked on sooner.
+              Membrane being the lowest priority while Premium being the
+              highest.
+            </li>
+          </ul>
         </div>
         <div class="col-md-6 p-3 pb-md-0">
           <Card
