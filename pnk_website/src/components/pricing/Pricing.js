@@ -61,7 +61,7 @@ function Pricing() {
             style={{ textDecoration: "none", cursor: "pointer" }}
             onClick={() => setfreeModal(true)}
           >
-            <div class="icon-box">
+            <div class="icon-box freemium-box">
               <div class="homeicon">
                 <div class="i">
                   <Icons.Coin className="priceicon" />
@@ -78,7 +78,7 @@ function Pricing() {
             style={{ textDecoration: "none", cursor: "pointer" }}
             onClick={() => setpremModal(true)}
           >
-            <div class="icon-box">
+            <div class="icon-box premium-box">
               <div class="homeicon">
                 <div class="i">
                   <Icons.CashCoin className="priceicon" />
@@ -95,7 +95,7 @@ function Pricing() {
             style={{ textDecoration: "none", cursor: "pointer" }}
             onClick={() => setmemModal(true)}
           >
-            <div class="icon-box">
+            <div class="icon-box membrane-box">
               <div class="homeicon">
                 <div class="i">
                   <Icons.Icon1Square className="priceicon" />
@@ -112,7 +112,7 @@ function Pricing() {
             style={{ textDecoration: "none", cursor: "pointer" }}
             onClick={() => setbuildModal(true)}
           >
-            <div class="icon-box">
+            <div class="icon-box build-box">
               <div class="homeicon">
                 <div class="i">
                   <Icons.Tools className="priceicon" />

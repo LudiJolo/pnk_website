@@ -9,7 +9,7 @@ function About() {
   return (
     <div class="about">
       <div>
-        <div class="aboutheader d-flex "></div>
+        <div class="aboutheader d-flex shadow-lg"></div>
         <h1 class="textheader">
           <span class="aboutletter">A</span>bout{" "}
           <span class="aboutletter">P</span>NK
@@ -17,7 +17,7 @@ function About() {
       </div>
       <div class="row mx-auto p-5">
         <div class="col-md-6 py-3 d-flex align-items-center">
-          <img class="aboutimg " src={showcase1} />
+          <img class="aboutimg rounded-5 shadow-lg" src={showcase1} />
         </div>
         <div class="abouttext col-md-6 d-flex align-items-center">
           <p>
@@ -33,7 +33,7 @@ function About() {
         </div>
         <div class="row">
           <div class="col-md-6 order-md-2 py-3 d-flex align-items-center">
-            <img class="aboutimg " src={showcase2} />
+            <img class="aboutimg rounded-5 shadow-lg" src={showcase2} />
           </div>
           <div class="abouttext col-md-6 order-md-1 d-flex align-items-center">
             <p>
@@ -49,7 +49,7 @@ function About() {
           </div>
         </div>
         <div class="col-md-6 py-3 d-flex align-items-center">
-          <video class="video" controls>
+          <video class="video rounded-5 shadow-lg" controls>
             <source src={showcase3} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

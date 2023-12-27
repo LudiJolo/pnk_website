@@ -49,7 +49,7 @@ function Home() {
           </p>
           <img
             src={aaron}
-            class="img-fluid rounded-4 shadow-lg"
+            class="img-fluid rounded-5 shadow-lg"
             style={{ width: "30rem" }}
           />
         </div>

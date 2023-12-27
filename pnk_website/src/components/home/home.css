@@ -1,3 +1,6 @@
+.jumbotron{
+  background-color: #f2ebff;
+}
 #headertext {
   position: absolute;
   top: 38%;
@@ -44,91 +47,7 @@
   transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
-/***************************************
-************** ICONS *******************
-****************************************/
-.pricinglink {
-  color: #000000;
-}
 
-.priceicon {
-  margin: 0 auto;
-  width: 50px;
-  height: 50px;
-  transition: all 0.3s ease-out 0s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform-style: preserve-3d;
-}
-.icon-box {
-  text-align: center;
-  padding: 80px 20px;
-  transition: all ease-in-out 0.3s;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  background-color: rgb(177, 177, 177);
-}
-.icon-box .homeicon {
-  margin: 0 auto;
-  width: 64px;
-  height: 64px;
-  background: #ffffff;
-  transition: all 0.3s ease-out 0s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  transform-style: preserve-3d;
-}
-.icon-box .homeicon i {
-  color: #fff;
-  font-size: 28px;
-}
-.icon-box .homeicon::before {
-  position: absolute;
-  content: "";
-  left: -8px;
-  top: -8px;
-  height: 100%;
-  width: 100%;
-  background: #444444;
-  transition: all 0.3s ease-out 0s;
-  transform: translateZ(-1px);
-}
-.icon-box h4 {
-  font-weight: 700;
-  margin-bottom: 15px;
-  font-size: 24px;
-}
-.icon-box h4 a {
-  color: #191919;
-}
-.icon-box p {
-  line-height: 24px;
-  font-size: 14px;
-  margin-bottom: 0;
-}
-.pricinglink:hover {
-  color: #2e2a2a;
-}
-.icon-box:hover {
-  background: #00d3e2;
-  border-color: #00d3e2;
-  padding: 70px 20px 90px 20px;
-}
-.icon-box:hover .homeicon {
-  background: #0bf150;
-}
-.icon-box:hover .homeicon i {
-  color: #cc1616;
-}
-.icon-box:hover .homeicon::before {
-  background: #e9e7e7;
-}
-.icon-box:hover h4,
-.icon-box:hover p {
-  color: #fff;
-}
 @font-face {
   src: url("./BEYNO.otf"), url("./BEYNO.ttf");
   font-family: beyno;
