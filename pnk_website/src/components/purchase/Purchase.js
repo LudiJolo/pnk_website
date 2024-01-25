@@ -57,7 +57,7 @@ function Purchase() {
         </div>
         <div class="col-md-3 mb-3">
           <Card className="border-success">
-            <Card.Header align="center" style={{backgroundColor:"#dc6aeb"}}>Freemium</Card.Header>
+            <Card.Header align="center" style={{backgroundColor:"#dc6aeb"}}>Buila-a-Board</Card.Header>
             <Card.Body>
               <Card.Text>
                 Need me to put it all together?

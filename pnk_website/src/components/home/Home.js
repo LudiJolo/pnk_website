@@ -8,6 +8,8 @@ import headerimg2 from "./img/headerimg2.png";
 import headerimg3 from "./img/headerimg3.png";
 import yt from "./img/YouTube-Emblem.png";
 import ig from "./img/ig.png";
+import twitch from "./img/twitch.png";
+import tiktok from "./img/tiktok.png";
 import aaron from "./img/aaronKeyboard.jpg";
 function Home() {
   return (
@@ -110,9 +112,25 @@ function Home() {
               style={{ maxWidth: "100px", height: "auto" }}
             />
           </a>
-          <a href="https://www.instagram.com/prettyneatkeys/">
+          <a href="https://www.instagram.com/prettyneatkeys/"
+          style={{ marginRight: "3em" }}>
             <img
               src={ig}
+              class="img-fluid social-icon"
+              style={{ maxWidth: "67px", height: "auto" }}
+            />
+          </a>
+          <a href="https://www.twitch.tv/pnkeys"
+          style={{ marginRight: "3em" }}> 
+            <img
+              src={twitch}
+              class="img-fluid social-icon"
+              style={{ maxWidth: "67px", height: "auto" }}
+            />
+          </a>
+          <a href="https://www.tiktok.com/@pnkeys?_t=8jBRcKVkRul&_r=1"> 
+            <img
+              src={tiktok}
               class="img-fluid social-icon"
               style={{ maxWidth: "67px", height: "auto" }}
             />
