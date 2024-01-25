@@ -29,13 +29,13 @@ function Home() {
           controls={false}
           indicators={false}
         >
-          <Carousel.Item interval={2000}>
+          <Carousel.Item interval={1500}>
             <img class="img-fluid w-100" src={headerimg} alt="First slide" />
           </Carousel.Item>
-          <Carousel.Item interval={2000}>
+          <Carousel.Item interval={1500}>
             <img class="img-fluid w-100" src={headerimg2} alt="Second slide" />
           </Carousel.Item>
-          <Carousel.Item interval={2000}>
+          <Carousel.Item interval={1500}>
             <img class="img-fluid w-100" src={headerimg3} alt="Third slide" />
           </Carousel.Item>
         </Carousel>
