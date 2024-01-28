@@ -12,7 +12,7 @@ function About() {
         <div class="aboutheader d-flex shadow-lg"></div>
         <h1 class="textheader">
           <span class="aboutletter">A</span>bout{" "}
-          <span class="aboutletter">P</span>NK
+          <span class="aboutletter">P</span>NKeys
         </h1>
       </div>
       <div class="row mx-auto p-5">

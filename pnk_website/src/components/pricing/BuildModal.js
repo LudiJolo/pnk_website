@@ -9,12 +9,12 @@ const BuildModal = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Freemium</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Build-a-Board</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            The Assembly service is basically, if you have the parts for your
+            The Assembly Service. Basically, if you have the parts for your
             keyboard but don’t want to go through the process working on it
             yourself, I can be the one to do it for you.
           </li>
@@ -24,8 +24,8 @@ const BuildModal = (props) => {
             total cost of the items will still be applied but $10 less.
           </li>
           <li class="list-group-item">
-            Example: 60% Keyboard which is $35. If there are 4 items it’ll be
-            $30 since we reduced the cost. Total would be $65.
+            Example: Lubing a 60% Keyboard which is $35. If there are 4 items it’ll be
+            $30 since we reduced the cost. Total would be $65 to be assembled.
           </li>
           <li class="list-group-item">
             This is the second highest priority on the list.

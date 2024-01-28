@@ -82,44 +82,46 @@ const AddKeyboard = (props) => {
     const storage = getStorage();
 
     const uploadTasks = [];
+
+    let newKeyboard = {
+      name: nameRef.current.value,
+      desc: descRef.current.value,
+      soundTest: soundRef.current.value,
+      general: {
+        brand: brandRef.current.value,
+        size: sizeRef.current.value,
+        switch: switchRef.current.value,
+      },
+      specifics: {
+        spec1: spec1Ref.current.value,
+        spec2: spec2Ref.current.value,
+        spec3: spec3Ref.current.value,
+      },
+      theme: {
+        reference: referRef.current.value,
+        colorTheme: colorRef.current.value,
+        otherInfo: otherRef.current.value,
+      },
+      sizePrice: checkSizePrice(sizeRef.current.value),
+      additionals: additional,
+      itemCount: additional.length,
+      total: calc_total(
+        parseFloat(checkSizePrice(sizeRef.current.value)),
+        additional
+      ),
+      stripeLink: stripeLinkRef.current.value,
+    };
     const addFunc = async () => {
-      const newKeyboard = await addDoc(collection(db, "keyboards"), {
-        name: nameRef.current.value,
-        desc: descRef.current.value,
-        soundTest: soundRef.current.value,
-        general: {
-          brand: brandRef.current.value,
-          size: sizeRef.current.value,
-          switch: switchRef.current.value,
-        },
-        specifics: {
-          spec1: spec1Ref.current.value,
-          spec2: spec2Ref.current.value,
-          spec3: spec3Ref.current.value,
-        },
-        theme: {
-          reference: referRef.current.value,
-          colorTheme: colorRef.current.value,
-          otherInfo: otherRef.current.value,
-        },
-        sizePrice: checkSizePrice(sizeRef.current.value),
-        additionals: additional,
-        itemCount: additional.length,
-        total: calc_total(
-          parseFloat(checkSizePrice(sizeRef.current.value)),
-          additional
-        ),
-        stripeLink: stripeLinkRef.current.value,
-      });
+      const keyboardRef = await addDoc(collection(db, "keyboards"), newKeyboard);
       if (img1 && img2 && img3) {
         const storageRef1 = ref(storage, img1.name);
         const storageRef2 = ref(storage, img2.name);
         const storageRef3 = ref(storage, img3.name);
 
         // Upload the file to Firebase Storage
-        const uploadTask1 = uploadBytes(storageRef1, img1);
-        const uploadTask2 = uploadBytes(storageRef2, img2);
-        const uploadTask3 = uploadBytes(storageRef3, img3);
+        const uploadTask1 = await uploadBytes(storageRef1, img1);
+        const uploadTask2 = await uploadBytes(storageRef2, img2);
+        const uploadTask3 = await uploadBytes(storageRef3, img3);
 
         uploadTasks.push(uploadTask1);
         uploadTasks.push(uploadTask2);
@@ -136,15 +138,20 @@ const AddKeyboard = (props) => {
         );
 
         // Save the download URL to Firestore
-        const keyRef = doc(db, "keyboards", newKeyboard.id);
+        const keyRef = doc(db, "keyboards", keyboardRef.id);
         const imagesData = {
           imgURL1: downloadURLs[0],
           imgURL2: downloadURLs[1],
           imgURL3: downloadURLs[2],
         };
+        newKeyboard.imgURL1 = downloadURLs[0];
+        newKeyboard.imgURL2 = downloadURLs[1];
+        newKeyboard.imgURL3 = downloadURLs[2];
+
         setDoc(keyRef, imagesData, { merge: true });
         console.log("Image uploaded and URL saved successfully.");
-        console.log("Document written with ID: ", newKeyboard.id);
+        console.log("Document written with ID: ", keyboardRef.id);
+        props.onAdd(newKeyboard);
       } catch (error) {
         console.error("Error uploading image:", error);
       }
@@ -315,7 +322,6 @@ const AddKeyboard = (props) => {
               <Form.Control
                 type="text"
                 ref={stripeLinkRef}
-                required
               />
             </InputGroup>
           </Form.Group>

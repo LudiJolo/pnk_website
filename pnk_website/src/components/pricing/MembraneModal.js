@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import membrane from "./img/membrane.jpg"
 const MembraneModal = (props) => {
   return (
     <Modal
@@ -18,6 +19,11 @@ const MembraneModal = (props) => {
             Membrane keyboards are similar to what office keyboards are. They
             don’t have mechanical switches and use rubber instead. The type of
             membrane keyboard are ones that look like this.
+            <img
+            src={membrane}
+            class="img-fluid rounded-5 shadow-lg"
+            style={{ width: "30rem" }}
+          />
           </li>
           <li class="list-group-item">
             Since this is more of a low quality keyboard this is the cheapest

@@ -29,7 +29,7 @@ import './admin.css'
 
 //next step: update list after adding keybaord data
 const Admin = (props) => {
-  const [keys, setKeys] = useState(null);
+  const [keys, setKeys] = useState([]);
   const [addModal, setAddModal] = useState(false);
   const [delModal, setDelModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -71,6 +71,13 @@ const Admin = (props) => {
   const editModalHandler = (e) => {
     setSelEdit(e.target.value);
     setEditModal(true);
+  };
+
+  const onAddhandler = (newKeeb) =>{
+    setKeys(prev=>{
+      const newKeys = [...prev, newKeeb];
+      return newKeys;
+    });
   };
 
   return (
@@ -129,7 +136,7 @@ const Admin = (props) => {
       <AddKeyboard
         show={addModal}
         onHide={() => setAddModal(false)}
-        confirm={() => setConfirm(onConfirm + 1)}
+        onAdd={onAddhandler}
       />
       <DeleteKeyboard
         keebId={selectedDel}

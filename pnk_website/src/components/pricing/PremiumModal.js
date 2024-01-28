@@ -29,11 +29,12 @@ const PremiumModal = (props) => {
             process
           </li>
           <li class="list-group-item">
-            Prices of premium are based off of how much each individual item
-            costs, as well as how many items we are using, plus the lubing fee.
+            The cost of premium consist of the total price plus $10 for every
+            individual item, including the lubing fee.
           </li>
           <li class="list-group-item">
-            Premium also lets you add O-rings and Keyboard Foam for free of charge.
+            Premium also lets you add O-rings and Keyboard Foam for free of
+            charge.
           </li>
           <li class="list-group-item">Highest priority on the list.</li>
         </ul>
