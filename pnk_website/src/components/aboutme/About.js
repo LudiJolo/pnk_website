@@ -56,16 +56,20 @@ function About() {
         </div>
         <div class="abouttext col-md-6 d-flex align-items-center">
           <p>
-            I offer two{" "}
+            I offer four{" "}
             <Link class="d-inline" to="/pricing/">
-              pricing options
+              different services
             </Link>{" "}
-            for the modding services while delivering exceptional craftsmanship
-            and customer satisfaction. For an accurate quote for your specific
-            modding project, please reach out to me to discuss your
-            requirements. What makes my lubing service different from others is
-            that I charge by size rather than per switch, which can be 40-60
-            dollars more. see above for pricing
+            . Yes, four. Freemium, Premium, Membrane, and Build-a-Board. Each
+            coming with affordable prices. Please see the Pricing Guide tab for
+            more information. With the way I charge it’ll be affordable for
+            people who are barely getting into the scene like I was last year.
+            As well as for people who have been keeping up with custom keyboards
+            who want to get their hands on their very first one. As with my
+            general lubing service, I lube by size of the keyboard. Most people
+            who charge a lubing service charge per switch. That could range
+            around $0.80 to $1.30. Again with my services they are a lot more
+            affordable. Allow me to make the perfect keyboard for you!
           </p>
         </div>
       </div>

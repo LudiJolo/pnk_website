@@ -44,7 +44,7 @@ function Home() {
         <div>
           <h1>Welcome</h1>
           <p>
-            We are PNK! We are a keyboard assembly and modding service that
+            We are PNKeys! We are a keyboard assembly and modding service that
             specializes in customizing mechanical keyboards based on style,
             comfort, and functionality at budget prices! Check our other tabs
             for more info!
