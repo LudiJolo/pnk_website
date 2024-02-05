@@ -30,6 +30,8 @@ const AddKeyboard = (props) => {
   const [cost, setCost] = useState(null);
   const [additional, setAdd] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+
   const handleImg1 = (e) => {
     const file = e.target.files[0];
     setimg1(file);
@@ -59,8 +61,8 @@ const AddKeyboard = (props) => {
   };
 
   const checkSizePrice = (value) => {
-    if (parseFloat(value) <= 65.00) return 30.0;
-    else if (parseFloat(value) > 65.00 && parseFloat(value) < 90.00) return 40.0;
+    if (parseFloat(value) <= 65.0) return 30.0;
+    else if (parseFloat(value) > 65.0 && parseFloat(value) < 90.0) return 40.0;
     else return 50.0;
   };
 
@@ -68,21 +70,23 @@ const AddKeyboard = (props) => {
     console.log(s_price);
     console.log(items);
     let total = 0.0;
-    for(let i=0; i<items.length; i++){
+    for (let i = 0; i < items.length; i++) {
       total = total + parseFloat(items[i].itmCost);
     }
-    total = total + (items.length*10);
+    total = total + items.length * 10;
     total = total + s_price;
     console.log("total", total);
     return total.toFixed(2);
   };
 
-  const addHandler = (e) => {
+  const addHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const storage = getStorage();
-
-    const uploadTasks = [];
-
+    let downloadURL1 = "";
+    let downloadURL2 = "";
+    let downloadURL3 = "";
     let newKeyboard = {
       name: nameRef.current.value,
       desc: descRef.current.value,
@@ -111,52 +115,60 @@ const AddKeyboard = (props) => {
       ),
       stripeLink: stripeLinkRef.current.value,
     };
-    const addFunc = async () => {
-      const keyboardRef = await addDoc(collection(db, "keyboards"), newKeyboard);
+
+    try {
+      const keyboardRef = await addDoc(
+        collection(db, "keyboards"),
+        newKeyboard
+      );
       if (img1 && img2 && img3) {
-        const storageRef1 = ref(storage, img1.name);
-        const storageRef2 = ref(storage, img2.name);
-        const storageRef3 = ref(storage, img3.name);
-
-        // Upload the file to Firebase Storage
-        const uploadTask1 = await uploadBytes(storageRef1, img1);
-        const uploadTask2 = await uploadBytes(storageRef2, img2);
-        const uploadTask3 = await uploadBytes(storageRef3, img3);
-
-        uploadTasks.push(uploadTask1);
-        uploadTasks.push(uploadTask2);
-        uploadTasks.push(uploadTask3);
-      }
-      try {
-        // Wait for all upload tasks to complete
-        const uploadResults = await Promise.all(uploadTasks);
-
-        // Get the download URL of the uploaded image
-        // Wait for all upload tasks to complete
-        const downloadURLs = await Promise.all(
-          uploadResults.map((uploadResult) => getDownloadURL(uploadResult.ref))
+        const storageRef1 = ref(
+          storage,
+          `collections/${nameRef.current.value}/${img1.name}`
+        );
+        const storageRef2 = ref(
+          storage,
+          `collections/${nameRef.current.value}/${img2.name}`
+        );
+        const storageRef3 = ref(
+          storage,
+          `collections/${nameRef.current.value}/${img3.name}`
         );
 
-        // Save the download URL to Firestore
-        const keyRef = doc(db, "keyboards", keyboardRef.id);
-        const imagesData = {
-          imgURL1: downloadURLs[0],
-          imgURL2: downloadURLs[1],
-          imgURL3: downloadURLs[2],
-        };
-        newKeyboard.imgURL1 = downloadURLs[0];
-        newKeyboard.imgURL2 = downloadURLs[1];
-        newKeyboard.imgURL3 = downloadURLs[2];
-
-        setDoc(keyRef, imagesData, { merge: true });
-        console.log("Image uploaded and URL saved successfully.");
-        console.log("Document written with ID: ", keyboardRef.id);
-        props.onAdd(newKeyboard);
-      } catch (error) {
-        console.error("Error uploading image:", error);
+        // Upload the file to Firebase Storage
+        await uploadBytes(storageRef1, img1);
+        await uploadBytes(storageRef2, img2);
+        await uploadBytes(storageRef3, img3);
+        downloadURL1 = await getDownloadURL(storageRef1);
+        downloadURL2 = await getDownloadURL(storageRef2);
+        downloadURL3 = await getDownloadURL(storageRef3);
       }
-    };
-    addFunc();
+
+      // Save the download URL to Firestore
+      const keyRef = doc(db, "keyboards", keyboardRef.id);
+      const imagesData = {
+        imgURL1: downloadURL1,
+        imgURL2: downloadURL2,
+        imgURL3: downloadURL3,
+      };
+      newKeyboard.imgURL1 = downloadURL1;
+      newKeyboard.imgURL2 = downloadURL2;
+      newKeyboard.imgURL3 = downloadURL3;
+
+      await setDoc(keyRef, imagesData, { merge: true });
+      console.log("Image uploaded and URL saved successfully.");
+      console.log("Document written with ID: ", keyboardRef.id);
+
+      let addedKeeb = { data: newKeyboard, id: keyRef.id };
+      addedKeeb.imgURL1 = downloadURL1;
+      addedKeeb.imgURL2 = downloadURL2;
+      addedKeeb.imgURL3 = downloadURL3;
+
+      props.onAdd(addedKeeb);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+    setLoading(false);
     props.onHide();
   };
 
@@ -176,7 +188,7 @@ const AddKeyboard = (props) => {
         <Form onSubmit={addHandler}>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Keyboard Name</Form.Label>
-              <Form.Control type="text" placeholder="" ref={nameRef} required />
+            <Form.Control type="text" placeholder="" ref={nameRef} required />
             <Form.Text className="text-muted">
               example: HyperX Alloy Origins
             </Form.Text>
@@ -319,19 +331,21 @@ const AddKeyboard = (props) => {
             <Form.Label>Stripe Info</Form.Label>
             <InputGroup>
               <InputGroup.Text>Price Link</InputGroup.Text>
-              <Form.Control
-                type="text"
-                ref={stripeLinkRef}
-              />
+              <Form.Control type="text" ref={stripeLinkRef} />
             </InputGroup>
           </Form.Group>
-          <Button variant="success" type="submit" onClick={props.confirm}>
-            Confirm
+          <Button
+            variant="success"
+            type="submit"
+            onClick={props.confirm}
+            disabled={loading}
+          >
+            {loading ? "Loading.." : "Confirm"}
           </Button>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="warning" onClick={props.onHide}>
+        <Button variant="warning" onClick={props.onHide} disabled={loading}>
           Cancel
         </Button>
       </Modal.Footer>

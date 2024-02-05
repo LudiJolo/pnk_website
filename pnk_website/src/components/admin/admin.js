@@ -29,7 +29,7 @@ import './admin.css'
 
 //next step: update list after adding keybaord data
 const Admin = (props) => {
-  const [keys, setKeys] = useState([]);
+  const [keys, setKeys] = useState(null);
   const [addModal, setAddModal] = useState(false);
   const [delModal, setDelModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -74,12 +74,13 @@ const Admin = (props) => {
   };
 
   const onAddhandler = (newKeeb) =>{
+    console.log("Added keyboard: ", newKeeb);
     setKeys(prev=>{
       const newKeys = [...prev, newKeeb];
       return newKeys;
     });
   };
-
+console.log(keys);
   return (
     <div class="admin-container bg-dark text-light">
       <Navbar expand="lg">
