@@ -80,7 +80,20 @@ const Admin = (props) => {
       return newKeys;
     });
   };
-console.log(keys);
+
+  const onEditHandler = (editedItem) =>{
+    setKeys(prevKeyboards => {
+      return prevKeyboards.map(keyboard => {
+        if (keyboard.id === editedItem.id) {
+          return {
+            ...keyboard,
+            data: editedItem.data
+          };
+        }
+        return keyboard;
+      });
+    });
+  };
   return (
     <div class="admin-container bg-dark text-light">
       <Navbar expand="lg">
@@ -150,7 +163,7 @@ console.log(keys);
         keebId={selectedEdit}
         show={editModal}
         onHide={() => setEditModal(false)}
-        confirm={ ()=>setConfirm(onConfirm+1) }
+        onEdit={onEditHandler}
       />
     </div>
   );

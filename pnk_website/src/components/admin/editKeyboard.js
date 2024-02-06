@@ -13,6 +13,8 @@ import {
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import * as Icons from "react-bootstrap-icons";
 const EditKeyboard = (props) => {
+  const [loading, setLoading] = useState(false);
+
   const [keebData, setKeeb] = useState(null);
 
   const nameRef = useRef(null);
@@ -65,6 +67,7 @@ const EditKeyboard = (props) => {
     const file = e.target.files[0];
     setimg3(file);
   };
+
   const addCostHandler = () => {
     if (item && cost && /^[0-9]*\.?[0-9]*$/.test(cost)) {
       const newItmCost = { itmName: item, itmCost: cost };
@@ -80,8 +83,8 @@ const EditKeyboard = (props) => {
   };
 
   const checkSizePrice = (value) => {
-    if (parseFloat(value) <= 65.00) return 30.0;
-    else if (parseFloat(value) > 65.00 && parseFloat(value) < 90.00) return 40.0;
+    if (parseFloat(value) <= 65.0) return 30.0;
+    else if (parseFloat(value) > 65.0 && parseFloat(value) < 90.0) return 40.0;
     else return 50.0;
   };
 
@@ -92,98 +95,126 @@ const EditKeyboard = (props) => {
     for (let i = 0; i < items.length; i++) {
       total = total + parseFloat(items[i].itmCost);
     }
-    total = total + (items.length * 10);
+    total = total + items.length * 10;
     total = total + checkSizePrice(size);
     console.log("total", total);
     return total.toFixed(2);
   };
 
-  const submitEditHandler = (e) => {
+  const submitEditHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const storage = getStorage();
     const keebRef = doc(db, "keyboards", props.keebId);
-    const imageUploadHandler = async () => {
+    let edited = {
+      name: nameRef.current.value ? nameRef.current.value : keebData.name,
+      desc: descRef.current.value ? descRef.current.value : keebData.desc,
+      soundTest: soundRef.current.value
+        ? soundRef.current.value
+        : keebData.soundTest,
+      general: {
+        brand: brandRef.current.value
+          ? brandRef.current.value
+          : keebData.general.brand,
+        size: sizeRef.current.value
+          ? sizeRef.current.value
+          : keebData.general.size,
+        switch: switchRef.current.value
+          ? switchRef.current.value
+          : keebData.general.switch,
+      },
+      specifics: {
+        spec1: spec1Ref.current.value
+          ? spec1Ref.current.value
+          : keebData.specifics.spec1,
+        spec2: spec2Ref.current.value
+          ? spec2Ref.current.value
+          : keebData.specifics.spec2,
+        spec3: spec3Ref.current.value
+          ? spec3Ref.current.value
+          : keebData.specifics.spec3,
+      },
+      theme: {
+        reference: referRef.current.value
+          ? referRef.current.value
+          : keebData.theme.reference,
+        colorTheme: colorRef.current.value
+          ? colorRef.current.value
+          : keebData.theme.colorTheme,
+        otherInfo: otherRef.current.value
+          ? otherRef.current.value
+          : keebData.theme.otherInfo,
+      },
+      sizePrice: sizeRef.current.value
+        ? checkSizePrice(sizeRef.current.value)
+        : keebData.sizePrice,
+      additionals: additional,
+      itemCount: additional.length,
+      total: calc_total(
+        parseFloat(
+          sizeRef.current.value ? sizeRef.current.value : keebData.general.size
+        ),
+        additional
+      ),
+      stripeLink: stripeLinkRef.current.value
+        ? stripeLinkRef.current.value
+        : keebData.stripeLink,
+    };
+
+    try {
       if (img1) {
-        const storageRef1 = ref(storage, img1.name);
+        const storageRef1 = ref(storage, `collections/${props.keebId}/${img1.name}`);
         const uploadTask1 = uploadBytes(storageRef1, img1);
         const downloadURL1 = await getDownloadURL((await uploadTask1).ref);
         await updateDoc(keebRef, {
           imgURL1: downloadURL1,
         });
+
+        edited.imgURL1 = downloadURL1
+      }
+      else{
+        edited.imgURL1 = keebData.imgURL1;
       }
       if (img2) {
-        const storageRef2 = ref(storage, img2.name);
+        const storageRef2 = ref(storage, `collections/${props.keebId}/${img2.name}`);
         const uploadTask2 = uploadBytes(storageRef2, img2);
         const downloadURL2 = await getDownloadURL((await uploadTask2).ref);
         await updateDoc(keebRef, {
           imgURL2: downloadURL2,
         });
+
+        edited.imgURL2 = downloadURL2
+      }
+      else{
+        edited.imgURL2 = keebData.imgURL2;
       }
       if (img3) {
-        const storageRef3 = ref(storage, img3.name);
+        const storageRef3 = ref(storage, `collections/${props.keebId}/${img3.name}`);
         const uploadTask3 = uploadBytes(storageRef3, img3);
         const downloadURL3 = await getDownloadURL((await uploadTask3).ref);
         await updateDoc(keebRef, {
           imgURL3: downloadURL3,
         });
+
+        edited.imgURL3 = downloadURL3
       }
-    };
-    const textInputHandler = async () => {
-      const editedKeyboard = await updateDoc(keebRef, {
-        name: nameRef.current.value ? nameRef.current.value : keebData.name,
-        desc: descRef.current.value ? descRef.current.value : keebData.desc,
-        soundTest: soundRef.current.value
-          ? soundRef.current.value
-          : keebData.soundTest,
-        general: {
-          brand: brandRef.current.value
-            ? brandRef.current.value
-            : keebData.general.brand,
-          size: sizeRef.current.value
-            ? sizeRef.current.value
-            : keebData.general.size,
-          switch: switchRef.current.value
-            ? switchRef.current.value
-            : keebData.general.switch,
-        },
-        specifics: {
-          spec1: spec1Ref.current.value
-            ? spec1Ref.current.value
-            : keebData.specifics.spec1,
-          spec2: spec2Ref.current.value
-            ? spec2Ref.current.value
-            : keebData.specifics.spec2,
-          spec3: spec3Ref.current.value
-            ? spec3Ref.current.value
-            : keebData.specifics.spec3,
-        },
-        theme: {
-          reference: referRef.current.value
-            ? referRef.current.value
-            : keebData.theme.reference,
-          colorTheme: colorRef.current.value
-            ? colorRef.current.value
-            : keebData.theme.colorTheme,
-          otherInfo: otherRef.current.value
-            ? otherRef.current.value
-            : keebData.theme.otherInfo,
-        },
-        sizePrice: sizeRef.current.value
-          ? checkSizePrice(sizeRef.current.value)
-          : keebData.sizePrice,
-        additionals: additional,
-        itemCount: additional.length,
-        total: calc_total(
-          parseFloat(sizeRef.current.value?sizeRef.current.value: keebData.general.size),
-          additional
-        ),
-        stripeLink: stripeLinkRef.current.value
-          ? stripeLinkRef.current.value
-          : keebData.stripeLink,
-      });
-    };
-    imageUploadHandler();
-    textInputHandler();
+      else{
+        edited.imgURL3 = keebData.imgURL3;
+      }
+
+      const editedKeyboard = await updateDoc(keebRef, edited);
+
+
+      props.onEdit({data:edited, id:props.keebId});
+    } catch (error) {
+      console.error("Error editing keyboard:", error);
+    }
+
+    setimg1(null);
+    setimg2(null);
+    setimg3(null);
+    setLoading(false);
     props.onHide();
   };
   return (
@@ -282,12 +313,12 @@ const EditKeyboard = (props) => {
                   <Form.Control
                     type="text"
                     placeholder={keebData.theme.colorTheme}
-                    ref={referRef}
+                    ref={colorRef}
                   />
                   <Form.Control
                     type="text"
                     placeholder={keebData.theme.reference}
-                    ref={colorRef}
+                    ref={referRef}
                   />
                   <Form.Control
                     type="text"
@@ -383,13 +414,13 @@ const EditKeyboard = (props) => {
                   />
                 </InputGroup>
               </Form.Group>
-              <Button variant="success" type="submit" onClick={props.confirm}>
-                Confirm
+              <Button variant="success" type="submit" onClick={props.confirm} disabled={loading}>
+              {loading ? "Loading.." : "Confirm"}
               </Button>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="warning" onClick={props.onHide}>
+            <Button variant="warning" onClick={props.onHide} disabled={loading}>
               Cancel
             </Button>
           </Modal.Footer>

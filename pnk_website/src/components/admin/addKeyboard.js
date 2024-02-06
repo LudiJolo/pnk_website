@@ -120,19 +120,20 @@ const AddKeyboard = (props) => {
       const keyboardRef = await addDoc(
         collection(db, "keyboards"),
         newKeyboard
-      );
+        );
+        const keyRef = doc(db, "keyboards", keyboardRef.id);
       if (img1 && img2 && img3) {
         const storageRef1 = ref(
           storage,
-          `collections/${nameRef.current.value}/${img1.name}`
+          `collections/${keyboardRef.id}/${img1.name}`
         );
         const storageRef2 = ref(
           storage,
-          `collections/${nameRef.current.value}/${img2.name}`
+          `collections/${keyboardRef.id}/${img2.name}`
         );
         const storageRef3 = ref(
           storage,
-          `collections/${nameRef.current.value}/${img3.name}`
+          `collections/${keyboardRef.id}/${img3.name}`
         );
 
         // Upload the file to Firebase Storage
@@ -145,7 +146,6 @@ const AddKeyboard = (props) => {
       }
 
       // Save the download URL to Firestore
-      const keyRef = doc(db, "keyboards", keyboardRef.id);
       const imagesData = {
         imgURL1: downloadURL1,
         imgURL2: downloadURL2,
@@ -168,6 +168,13 @@ const AddKeyboard = (props) => {
     } catch (error) {
       console.error("Error uploading image:", error);
     }
+
+    setimg1(null);
+    setimg2(null);
+    setimg3(null);
+    setItem(null);
+    setCost(null);
+    setAdd([]);
     setLoading(false);
     props.onHide();
   };
