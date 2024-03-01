@@ -61,9 +61,9 @@ const AddKeyboard = (props) => {
   };
 
   const checkSizePrice = (value) => {
-    if (parseFloat(value) <= 65.0) return 30.0;
-    else if (parseFloat(value) > 65.0 && parseFloat(value) < 90.0) return 40.0;
-    else return 50.0;
+    if (parseFloat(value) <= 65.0) return 35.0;
+    else if (parseFloat(value) > 65.0 && parseFloat(value) < 90.0) return 45.0;
+    else return 55.0;
   };
 
   const calc_total = (s_price, items) => {
@@ -221,7 +221,6 @@ const AddKeyboard = (props) => {
               placeholder=""
               name="sound_url"
               ref={soundRef}
-              required
             />
             <Form.Text className="text-muted">Enter YouTube link</Form.Text>
           </Form.Group>

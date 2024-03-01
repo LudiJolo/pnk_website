@@ -30,7 +30,7 @@ const FreeModal = (props) => {
               </li>
             </ul>
           </li>
-          <li class="list-group-item">For $5 more you can get access to additional mods such as O-rings, foam and, tape mods.</li>
+          <li class="list-group-item">For $5 more you can get access to additional mods such as O-rings, foam, modded stabilizers and, tape mods.</li>
           <li class="list-group-item">Can pay in cash or card</li>
           <li class="list-group-item">Low priority on the list.</li>
         </ul>

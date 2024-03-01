@@ -33,7 +33,7 @@ const PremiumModal = (props) => {
             individual item, including the lubing fee.
           </li>
           <li class="list-group-item">
-            Premium also lets you add O-rings and Keyboard Foam for free of
+            Premium also lets you add O-rings, modded stabilizers, and Keyboard Foam for free of
             charge.
           </li>
           <li class="list-group-item">Highest priority on the list.</li>
