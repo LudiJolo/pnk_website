@@ -10,16 +10,22 @@ function About() {
     <div class="about">
       <div>
         <div class="aboutheader d-flex shadow-lg"></div>
-        <h1 class="textheader">
+        <h1
+          class="textheader"
+          data-aos="fade-right"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="500"
+          data-aos-duration="1000"
+        >
           <span class="aboutletter">A</span>bout{" "}
           <span class="aboutletter">P</span>NKeys
         </h1>
       </div>
       <div class="row mx-auto p-5">
-        <div class="col-md-6 py-3 d-flex align-items-center">
+        <div class="col-md-6 py-3 d-flex align-items-center" data-aos="fade-up-right">
           <img class="aboutimg rounded-5 shadow-lg" src={showcase1} />
         </div>
-        <div class="abouttext col-md-6 d-flex align-items-center">
+        <div class="abouttext col-md-6 d-flex align-items-center" data-aos="fade-down-left">
           <p>
             Keyboard customization was something I’ve gotten into as of
             recently. I am here to show people that having something premium at
@@ -32,10 +38,10 @@ function About() {
           </p>
         </div>
         <div class="row">
-          <div class="col-md-6 order-md-2 py-3 d-flex align-items-center">
+          <div class="col-md-6 order-md-2 py-3 d-flex align-items-center" data-aos="fade-down-left">
             <img class="aboutimg rounded-5 shadow-lg" src={showcase2} />
           </div>
-          <div class="abouttext col-md-6 order-md-1 d-flex align-items-center">
+          <div class="abouttext col-md-6 order-md-1 d-flex align-items-center" data-aos="fade-up-right" >
             <p>
               So to repeat what I do, I provide a lubing service as well as just
               assembling the keyboard. What I am exactly lubing are the
@@ -48,13 +54,13 @@ function About() {
             </p>
           </div>
         </div>
-        <div class="col-md-6 py-3 d-flex align-items-center">
+        <div class="col-md-6 py-3 d-flex align-items-center" data-aos="fade-up-right">
           <video class="video rounded-5 shadow-lg" controls>
             <source src={showcase3} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
-        <div class="abouttext col-md-6 d-flex align-items-center">
+        <div class="abouttext col-md-6 d-flex align-items-center" data-aos="fade-down-left">
           <p>
             I offer four{" "}
             <Link class="d-inline" to="/pricing/">

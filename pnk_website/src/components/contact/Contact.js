@@ -1,14 +1,54 @@
 import { React, useReducer } from "react";
 import emailjs from "@emailjs/browser";
 import "./contact.css";
-import { Row } from "react-bootstrap";
+import { Row, Form, Button } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 function Contact() {
   return (
     <div class="contactcontainer">
-      <div align="center" class="contactform">
+      <div align="center" class="contactform shadow-lg ">
         <div class="row">
-          <div class="col-12 text-center">
+          <div class="msgform col-md-6 text-center">
+            <Form className="p-2">
+              <h1 class>Reach out to me</h1>
+              <Form.Group controlId="formName">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your name"
+                  name="name"
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter your email"
+                  name="email"
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formMessage">
+                <Form.Label>Message</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  placeholder="Enter your message"
+                  name="message"
+                  maxLength={500}
+                  required
+                />
+              </Form.Group>
+
+              <Button variant="primary" type="submit" className="mt-2">
+                Submit
+              </Button>
+            </Form>
+          </div>
+          <div class="socials col-md-6 text-center p-2">
             <div class="info-box mb-4">
               <Icons.EnvelopeAtFill className="i" />
               <br />
@@ -17,29 +57,27 @@ function Contact() {
                 prettyneatkeys@gmail.com
               </a>
             </div>
-          </div>
-          <div class="col-12 text-center">
-            <div class="info-box mb-4">
+            <div class="info-box">
               <Icons.People className="i" />
               <br />
               <p>Socials</p>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-6">
                   <a href="https://www.youtube.com/@PrettyNeatKeyboardsPNK">
                     <Icons.Youtube className="social-icon" />
                   </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
                   <a href="https://www.instagram.com/prettyneatkeys/">
                     <Icons.Instagram className="social-icon " />
                   </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
                   <a href="https://www.twitch.tv/pnkeys/">
                     <Icons.Twitch className="social-icon " />
                   </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
                   <a href="https://www.tiktok.com/@pnkeys?_t=8jBRcKVkRul&_r=1">
                     <Icons.Tiktok className="social-icon " />
                   </a>

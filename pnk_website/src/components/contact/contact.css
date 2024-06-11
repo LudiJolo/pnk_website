@@ -1,14 +1,11 @@
 .contactcontainer {
-  background-image: linear-gradient(45deg, #4998da, #1cb4a0);
+  background-image: linear-gradient(45deg, #f2ebff, #d2b9ff);
   height: 100vh;
 }
 
 .contactform {
   position: absolute;
-  border: 5px solid rgb(0, 217, 255);
-  padding: 3em;
-  width: 40%;
-  background-image: linear-gradient(135deg, #50aaf3, #20c9b2);
+  width: 70%;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -20,12 +17,10 @@
 .info-box {
   color: #444444;
   text-align: center;
-  box-shadow: 0 0 30px rgba(0, 103, 206, 0.6);
-  padding: 20px 0 30px 0;
 }
 .info-box .i {
-  font-size: 32px;
-  color: #1622cc;
+  font-size: 40px;
+  color: #6c3ee3;
   border-radius: 50%;
   padding: 8px;
   border: 2px dotted #000000;
@@ -34,7 +29,7 @@
 }
 .info-box .social-icon {
   font-size: 32px;
-  color: #1622cc;
+  color: #6c3ee3;
   padding: 8px;
   width:1.5em;
   height: 1.5em;
@@ -50,6 +45,14 @@
   line-height: 24px;
   font-size: 14px;
   margin-bottom: 0;
+}
+
+.msgform{
+  background-image: linear-gradient(135deg,#bc9df7,#824ee2);
+}
+
+.socials{
+  background-color: rgb(247, 222, 250);
 }
 
 @media screen and (max-width: 767px) {

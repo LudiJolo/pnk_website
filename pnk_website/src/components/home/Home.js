@@ -16,18 +16,35 @@ function Home() {
     <div>
       <div class="headercontainer position-relative">
         <div id="headertext" class="text-center">
-          <h1 id="header1">
+          <h1
+            id="header1"
+            data-aos="fade-right"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="500"
+            data-aos-duration="1000"
+          >
             <span id="p">P</span>
             retty <span id="n">N</span>
             eat <span id="k">K</span>
             eys
           </h1>
-          <h3 id="header2">by PNK Co.</h3>
+          <h3
+            id="header2"
+            data-aos="fade-right"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="500"
+            data-aos-duration="1000"
+          >
+            by PNK Co.
+          </h3>
         </div>
         <Carousel
           className="headercarousel"
           controls={false}
           indicators={false}
+          data-aos="flip-left"
+          data-aos-offset="500"
+          data-aos-duration="1000"
         >
           <Carousel.Item interval={1500}>
             <img class="img-fluid w-100" src={headerimg} alt="First slide" />
@@ -40,8 +57,8 @@ function Home() {
           </Carousel.Item>
         </Carousel>
       </div>
-      <div class="jumbotron" align="center">
-        <div>
+      <div class="jumbotron" align="center" data-aos="fade-left">
+        <div data-aos="fade-up">
           <h1>Welcome</h1>
           <p>
             We are PNKeys! We are a keyboard assembly and modding service that
@@ -53,6 +70,7 @@ function Home() {
             src={aaron}
             class="img-fluid rounded-5 shadow-lg"
             style={{ width: "30rem" }}
+            data-aos="fade-up"
           />
         </div>
       </div>
@@ -104,7 +122,7 @@ function Home() {
         <div>
           <a
             href="https://www.youtube.com/@PrettyNeatKeyboardsPNK"
-            style={{ marginRight: "3em" }}
+            style={{ margin: "1em" }}
           >
             <img
               src={yt}
@@ -112,23 +130,24 @@ function Home() {
               style={{ maxWidth: "100px", height: "auto" }}
             />
           </a>
-          <a href="https://www.instagram.com/prettyneatkeys/"
-          style={{ marginRight: "3em" }}>
+          <a
+            href="https://www.instagram.com/prettyneatkeys/"
+            style={{ margin: "1em" }}
+          >
             <img
               src={ig}
               class="img-fluid social-icon"
               style={{ maxWidth: "67px", height: "auto" }}
             />
           </a>
-          <a href="https://www.twitch.tv/pnkeys"
-          style={{ marginRight: "3em" }}> 
+          <a href="https://www.twitch.tv/pnkeys" style={{ margin: "1em" }}>
             <img
               src={twitch}
               class="img-fluid social-icon"
               style={{ maxWidth: "67px", height: "auto" }}
             />
           </a>
-          <a href="https://www.tiktok.com/@pnkeys?_t=8jBRcKVkRul&_r=1"> 
+          <a href="https://www.tiktok.com/@pnkeys?_t=8jBRcKVkRul&_r=1" style={{ margin: "1em" }}>
             <img
               src={tiktok}
               class="img-fluid social-icon"

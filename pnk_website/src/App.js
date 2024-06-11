@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -15,8 +16,12 @@ import Login from "./components/login/login";
 import Authenticate from "./components/login/Authenticate";
 import Request from "./components/request/Request";
 import Purchase from "./components/purchase/Purchase";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 function App() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <div class="maincontainer">
       <BrowserRouter>

@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "react-router-dom": "^6.11.2"
+  },
+  "dependencies": {
+    "aos": "^2.3.4"
   }
 }
