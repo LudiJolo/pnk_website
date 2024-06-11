@@ -34,6 +34,16 @@ function Contact() {
                     <Icons.Instagram className="social-icon " />
                   </a>
                 </div>
+                <div class="col-md-6">
+                  <a href="https://www.twitch.tv/pnkeys/">
+                    <Icons.Twitch className="social-icon " />
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a href="https://www.tiktok.com/@pnkeys?_t=8jBRcKVkRul&_r=1">
+                    <Icons.Tiktok className="social-icon " />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

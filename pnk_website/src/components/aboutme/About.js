@@ -9,15 +9,15 @@ function About() {
   return (
     <div class="about">
       <div>
-        <div class="aboutheader d-flex "></div>
+        <div class="aboutheader d-flex shadow-lg"></div>
         <h1 class="textheader">
           <span class="aboutletter">A</span>bout{" "}
-          <span class="aboutletter">P</span>NK
+          <span class="aboutletter">P</span>NKeys
         </h1>
       </div>
       <div class="row mx-auto p-5">
         <div class="col-md-6 py-3 d-flex align-items-center">
-          <img class="aboutimg " src={showcase1} />
+          <img class="aboutimg rounded-5 shadow-lg" src={showcase1} />
         </div>
         <div class="abouttext col-md-6 d-flex align-items-center">
           <p>
@@ -33,7 +33,7 @@ function About() {
         </div>
         <div class="row">
           <div class="col-md-6 order-md-2 py-3 d-flex align-items-center">
-            <img class="aboutimg " src={showcase2} />
+            <img class="aboutimg rounded-5 shadow-lg" src={showcase2} />
           </div>
           <div class="abouttext col-md-6 order-md-1 d-flex align-items-center">
             <p>
@@ -49,23 +49,27 @@ function About() {
           </div>
         </div>
         <div class="col-md-6 py-3 d-flex align-items-center">
-          <video class="video" controls>
+          <video class="video rounded-5 shadow-lg" controls>
             <source src={showcase3} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
         <div class="abouttext col-md-6 d-flex align-items-center">
           <p>
-            I offer two{" "}
+            I offer four{" "}
             <Link class="d-inline" to="/pricing/">
-              pricing options
+              different services
             </Link>{" "}
-            for the modding services while delivering exceptional craftsmanship
-            and customer satisfaction. For an accurate quote for your specific
-            modding project, please reach out to me to discuss your
-            requirements. What makes my lubing service different from others is
-            that I charge by size rather than per switch, which can be 40-60
-            dollars more. see above for pricing
+            . Yes, four. Freemium, Premium, Membrane, and Build-a-Board. Each
+            coming with affordable prices. Please see the Pricing Guide tab for
+            more information. With the way I charge it’ll be affordable for
+            people who are barely getting into the scene like I was last year.
+            As well as for people who have been keeping up with custom keyboards
+            who want to get their hands on their very first one. As with my
+            general lubing service, I lube by size of the keyboard. Most people
+            who charge a lubing service charge per switch. That could range
+            around $0.80 to $1.30. Again with my services they are a lot more
+            affordable. Allow me to make the perfect keyboard for you!
           </p>
         </div>
       </div>

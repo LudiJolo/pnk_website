@@ -38,6 +38,10 @@ function Keyboard() {
               original: itemSnap.data().imgURL2,
               thumbnail: itemSnap.data().imgURL2,
             },
+            {
+              original: itemSnap.data().imgURL3,
+              thumbnail: itemSnap.data().imgURL3,
+            },
           ];
 
           setImages(img);
@@ -59,9 +63,7 @@ function Keyboard() {
               <h1>{keyboard.name}</h1>
               <p>
                 Do you want this custom keyboard?{" "}
-                <Button onClick={() => setPrecheckout(true)}>
-                  Buy preset
-                </Button>
+                <Button onClick={() => setPrecheckout(true)}>Buy preset</Button>
               </p>
               <a class="btn btn-primary scrollto" href="#soundtest">
                 Sound test
@@ -133,8 +135,16 @@ function Keyboard() {
             align="center"
             class="mt-5 py-5 text-bg-dark shadow-lg"
           >
-            <h1>Sound Test</h1>
-            <ReactPlayer id="player" url={keyboard.soundTest} controls={true} />
+            {keyboard.soundTest ? (
+              <>
+              <h1>Sound Test</h1>
+              <ReactPlayer
+                id="player"
+                url={keyboard.soundTest}
+                controls={true}
+              />
+              </>
+            ): <h1>Sound test coming soon!</h1>}
           </div>
           <PreCheckout
             data={keyboard}

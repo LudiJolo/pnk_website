@@ -73,6 +73,27 @@ const Admin = (props) => {
     setEditModal(true);
   };
 
+  const onAddhandler = (newKeeb) =>{
+    console.log("Added keyboard: ", newKeeb);
+    setKeys(prev=>{
+      const newKeys = [...prev, newKeeb];
+      return newKeys;
+    });
+  };
+
+  const onEditHandler = (editedItem) =>{
+    setKeys(prevKeyboards => {
+      return prevKeyboards.map(keyboard => {
+        if (keyboard.id === editedItem.id) {
+          return {
+            ...keyboard,
+            data: editedItem.data
+          };
+        }
+        return keyboard;
+      });
+    });
+  };
   return (
     <div class="admin-container bg-dark text-light">
       <Navbar expand="lg">
@@ -129,7 +150,7 @@ const Admin = (props) => {
       <AddKeyboard
         show={addModal}
         onHide={() => setAddModal(false)}
-        confirm={() => setConfirm(onConfirm + 1)}
+        onAdd={onAddhandler}
       />
       <DeleteKeyboard
         keebId={selectedDel}
@@ -142,7 +163,7 @@ const Admin = (props) => {
         keebId={selectedEdit}
         show={editModal}
         onHide={() => setEditModal(false)}
-        confirm={ ()=>setConfirm(onConfirm+1) }
+        onEdit={onEditHandler}
       />
     </div>
   );

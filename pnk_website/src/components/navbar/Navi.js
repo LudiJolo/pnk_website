@@ -12,7 +12,7 @@ function Navi() {
             <img
               src={logo}
               alt="Home"
-              height="30"
+              height="40"
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
@@ -20,10 +20,11 @@ function Navi() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About PNK</Nav.Link>
-              <Nav.Link href="/request" className="text-warning">Custom Requests</Nav.Link>
+              <Nav.Link href="/about">About PNKeys</Nav.Link>
+              <Nav.Link href="/pricing">Pricing Guide</Nav.Link>
+              <Nav.Link href="/purchase">Purchase</Nav.Link>
+              {/*<Nav.Link href="/request" className="text-warning">Custom Requests</Nav.Link> */}
               <Nav.Link href="/collection">Collection</Nav.Link>
-              <Nav.Link href="/pricing">Pricing</Nav.Link>
               <Nav.Link href="/contact">Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>

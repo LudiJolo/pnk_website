@@ -46,9 +46,9 @@ function Collection() {
       <div class="row ">
         {keyboards &&
           keyboards.map((item) => (
-            <div class="col-md-4 mx-auto p-3">
-              <div class="card">
-                <img class="card-img-top " src={item.data.imgURL1} />
+            <div class="col-md-4 mx-auto p-3" style={{width:"25rem"}}>
+              <div class="card" >
+                <img class="card-img-top img-fluid" src={item.data.imgURL1} />
                 <div class="card-body">
                   <h5 class="card-title">{item.data.name}</h5>
                   <div class="card-text mb-3">
